@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Keys Concierge — The Key to The Keys</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f0f4f4;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .brand {
+      text-align: center;
+    }
+
+    .brand-tag {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: #0B6464;
+      text-transform: uppercase;
+    }
+
+    .chat {
+      display: flex;
+      flex-direction: column;
+      height: 580px;
+      border-radius: 16px;
+      border: 1px solid #d4e4e4;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 2px 16px rgba(11,100,100,0.08);
+    }
+
+    .chat-header {
+      padding: 14px 18px;
+      border-bottom: 1px solid #e8f0f0;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #0B6464;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .avatar svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: #fff;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .header-text h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1a2a2a;
+      line-height: 1.3;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .online-dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #1D9E75;
+      flex-shrink: 0;
+    }
+
+    .header-text p {
+      font-size: 12px;
+      color: #6b8a8a;
+      margin-top: 1px;
+    }
+
+    .messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      scroll-behavior: smooth;
+    }
+
+    .msg {
+      display: flex;
+      max-width: 85%;
+    }
+
+    .msg.user { align-self: flex-end; }
+    .msg.bot  { align-self: flex-start; }
+
+    .bubble {
+      padding: 10px 14px;
+      border-radius: 14px;
+      font-size: 13.5px;
+      line-height: 1.55;
+    }
+
+    .msg.user .bubble {
+      background: #0B6464;
+      color: #fff;
+      border-bottom-right-radius: 4px;
+    }
+
+    .msg.bot .bubble {
+      background: #f0f6f6;
+      color: #1a2a2a;
+      border-bottom-left-radius: 4px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 0 16px 10px;
+    }
+
+    .chip {
+      font-size: 12px;
+      font-family: 'Inter', sans-serif;
+      padding: 5px 12px;
+      border-radius: 20px;
+      border: 1px solid #c8dede;
+      background: #fff;
+      color: #3a6464;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .chip:hover {
+      background: #e6f2f2;
+      color: #0B6464;
+    }
+
+    .input-area {
+      padding: 12px 14px;
+      border-top: 1px solid #e8f0f0;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      background: #fff;
+    }
+
+    .inp {
+      flex: 1;
+      padding: 9px 14px;
+      border-radius: 20px;
+      border: 1px solid #c8dede;
+      background: #f7fbfb;
+      color: #1a2a2a;
+      font-size: 13.5px;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .inp:focus { border-color: #0B6464; }
+
+    .send-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: none;
+      background: #0B6464;
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.15s;
+    }
+
+    .send-btn:hover { background: #084f4f; }
+    .send-btn:disabled { opacity: 0.45; cursor: default; }
+
+    .send-btn svg {
+      width: 15px;
+      height: 15px;
+      fill: none;
+      stroke: #fff;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .typing-bubble {
+      padding: 10px 14px;
+      border-radius: 14px;
+      border-bottom-left-radius: 4px;
+      background: #f0f6f6;
+      display: flex;
+      gap: 3px;
+      align-items: center;
+    }
+
+    .dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #7aabab;
+      animation: bounce 1.2s infinite;
+    }
+
+    .dot:nth-child(2) { animation-delay: .2s; }
+    .dot:nth-child(3) { animation-delay: .4s; }
+
+    @keyframes bounce {
+      0%, 60%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-4px); }
+    }
+
+    .powered {
+      font-size: 11px;
+      color: #8aabab;
+      text-align: center;
+      padding: 2px 0 4px;
+    }
+
+    .powered a {
+      color: #0B6464;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrapper">
+  <div class="brand">
+    <div class="brand-tag">AI Concierge Demo &mdash; The Key to The Keys</div>
+  </div>
+
+  <div class="chat">
+    <div class="chat-header">
+      <div class="avatar">
+        <svg viewBox="0 0 24 24"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0 3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+      </div>
+      <div class="header-text">
+        <h3>Keys Concierge <span class="online-dot" aria-label="online"></span></h3>
+        <p>The Key to The Keys &bull; Your local Florida Keys guide</p>
+      </div>
+    </div>
+
+    <div class="messages" id="msgs">
+      <div class="msg bot">
+        <div class="bubble">Hey there! Welcome to The Key to The Keys. I'm your personal concierge for everything Florida Keys — properties, local gems, booking help, you name it. What can I help you with today? 🌴</div>
+      </div>
+    </div>
+
+    <div class="chips" id="chips">
+      <button class="chip" onclick="sendChip('Tell me about Casa Coco')">Casa Coco</button>
+      <button class="chip" onclick="sendChip('Tell me about Villa Blue')">Villa Blue</button>
+      <button class="chip" onclick="sendChip('Tell me about Seaglass and the Cabana Club')">Seaglass + Cabana Club</button>
+      <button class="chip" onclick="sendChip('What properties do you have in Marathon?')">All properties</button>
+      <button class="chip" onclick="sendChip('How do I book a property?')">How to book</button>
+    </div>
+
+    <div class="input-area">
+      <input class="inp" id="inp" type="text" placeholder="Ask me anything about the Keys..." />
+      <button class="send-btn" id="sendBtn" onclick="handleSend()" aria-label="Send message">
+        <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </div>
+    <div class="powered">Powered by <a href="https://audaz.agency" target="_blank">AUDAZ Agency AI</a> &bull; thekeytothekeys.com</div>
+  </div>
+</div>
+
+<script>
+const SYS = `You are Keys Concierge, the warm and knowledgeable AI assistant for The Key to The Keys — a boutique, family-owned Florida Keys vacation rental company. Speak like a friendly local who genuinely loves island life.
+
+ABOUT THE COMPANY:
+- Family-owned boutique vacation rental management, owner: Damian Menendez and team
+- Specializes in: Key Largo, Marathon, Layton Key, Key Colony Beach, Summerland Key
+- Book direct at thekeytothekeys.com — no platform fees, best rate guaranteed
+- Contact: info@thekeytothekeys.com | (786) 368-9922
+- Social: @thekeytothekeys on Instagram, TikTok, Facebook
+
+PROPERTIES:
+
+MARATHON AREA:
+
+• Casa Coco — Private home | Multiple bedrooms | Entry via lockbox (code provided at booking) | Outdoor kitchen with BBQ and propane | Outdoor bar with fridge and TV | Outdoor shower | 3rd floor rooftop lounge with sun mattresses and views | Downstairs bedroom: queen bed, full bathroom, private entrance (access outside only, does not connect inside) | Main house: coffee maker, full fridge, small workspace | 2nd floor: hallway bathroom, washer & dryer (always ready), iron available, towels and linens provided | Thermostat set to 74° when vacant | Electrical panel behind hallway mirror on 2nd floor | Queen bedroom with TV | Master bedroom: king bed, TV, HDMI | Owner's closets are locked — no guest access | House rules posted | Glass door must be kept closed at all times
+
+• Purple Pelican Trailer — Calusa LOT #1 | Unique trailer-style property | 1 parking space + common area parking | Two bikes included | Outdoor picnic table | Outdoor shower | Hot tub | BBQ with propane (always check propane before use — contact team via WhatsApp if replacement needed) | Main living area: sleeping sofa (opens to full bed, fits 1-2), dining table, workspace, TV | Internet router on site (unplug/replug to reboot) | Stove and oven — propane powered (oven requires pilot light) | Coffee maker, toaster, rice maker, tea | Bathroom: queen bed, toilet, small shower, sink | Extra toilet paper always stocked | Fan, heater (for winter months), mosquito repellent provided | Beach towels included | GFCI outlets — press reset if power trips | Main breaker outside for trailer and outdoor area | Street lights controlled by switch on unit | Extra key stored outside for emergencies | Laundry supplies provided
+
+• Manatee Hideout — LOT #250 Calusa | Unit 250 | Two parking spaces (limited space) | Porch at front | Guest lockbox entry (code provided at booking) | Separate owner lockbox — no guest access | Owner shed — no guest access | BBQ with propane | Outdoor AC controls | Two coffee makers (drip + single serve) | TV | Propane oven (check propane periodically) | Master bedroom upstairs with king bed | Second bedroom upstairs with queen bed | Downstairs bedroom with queen bed | Electrical panel on master bedroom wall — enter room, turn right | Trash pickup: Monday and Thursday | Recycling pickup: Saturday
+
+• Villa Blue — Unit 480 (Upstairs) | Dedicated parking space on side of building | Private upstairs unit | Door on left at top of stairs | Entry code provided at booking | Master bedroom | Second bedroom: queen bed | Third bedroom: twin bed | NO TVs in any bedroom (digital detox!) | Board games collection for family fun | Fire extinguisher on site | Floor plan and house rules posted | Two full bathrooms | Electrical panel behind barrel/mirror in hallway | Owner's closet — no guest access | Balcony with outdoor furniture and views | BBQ with propane at bottom of stairs | Recycling and trash area at bottom of stairs
+
+KEY COLONY BEACH AREA — "The Gem of the Keys" | Small island within Marathon | Crystal clear waters | Beautiful beaches (rare for this side of the Keys)
+
+• Key Colony Beach Club (KCBC) — 15-unit building on Key Colony Beach island | Multiple units managed by The Key to The Keys | Waterfront location | Beautiful clear water beach | Pool access
+
+• Seaglass — Unit 24 at KCBC | EXCLUSIVE Cabana Club access (only unit with this perk!) | Cabana Club is walking distance from Unit 24 | Cabana Club amenities: private beach, heated pool, tiki bar, restaurant/dining | Cabana Club hours: 10AM–7PM | IMPORTANT: Team must notify Cabana Club at least 1 day before guest arrival with guest names and dates | Unit membership only — no outside guests or boats at Cabana Club
+
+• Bella Blue — Key Colony Beach Club building | Waterfront location
+
+• Paradise Cove — Key Colony Beach Club building | Waterfront location
+
+• Tides at KCBC — Key Colony Beach Club building | Waterfront location
+
+OTHER PROPERTIES:
+• HotTub Hideaway — 4 guests | 2 bed | 1 bath | Private, secluded, intimate | Private hot tub
+• Beach Heaven — 5 guests | 2 bed | 2 bath | Private beach access | Crystal clear water
+• May the Surf Be With You — 5 guests | 2 bed | 2 bath | King + queen + bunks | Perfect for families
+
+LOCAL KNOWLEDGE (you are a local — speak like one):
+Marathon: Sombrero Beach (beautiful free beach), Keys Fisheries (stone crab is a must!), Dolphin Research Center, Turtle Hospital, Sunset Grille & Raw Bar
+Key Largo: John Pennekamp Coral Reef State Park (snorkeling/diving mecca), Mrs. Mac's Kitchen (local institution), Sundowners (best sunsets)
+Keys-wide: world-class fishing (tarpon, bonefish, snapper), kayaking, paddleboarding, snorkeling, diving
+Best season: December through April. Hurricane season: June-November.
+
+BOOKING:
+- Guide guests to thekeytothekeys.com for availability and pricing, or offer to have the team reach out
+- Emphasize: book direct = no service fees = best rate vs. Airbnb/VRBO
+- Minimum stays and pricing vary by property and season
+
+FOR PROPERTY OWNERS:
+- Full-service management: professional photography, listing optimization, guest screening, 24/7 support
+- Strong ROI focus
+- Connect with team: info@thekeytothekeys.com
+
+YOUR STYLE:
+- Warm, concise, like a knowledgeable local neighbor
+- 2-4 sentences per response unless more detail is clearly needed
+- Always close with a helpful next step or offer
+- Never say you don't know — connect them to the team
+- Light island charm is welcome
+
+LANGUAGE:
+- Always detect the language the guest is writing in and respond in that same language
+- You are fully fluent in English, Spanish, Portuguese, French, German, and Italian
+- Never switch languages mid-conversation unless the guest does first
+- If a guest writes in any other language, do your best to respond in that language`;
+
+let hist = [];
+
+async function callAPI(msg) {
+  hist.push({ role: 'user', content: msg });
+  const r = await fetch('/.netlify/functions/chat', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ system: SYS, messages: hist })
+  });
+  const d = await r.json();
+  const reply = d.content?.find(b => b.type === 'text')?.text
+    || 'Reach us directly at (786) 368-9922 or info@thekeytothekeys.com!';
+  hist.push({ role: 'assistant', content: reply });
+  return reply;
+}
+
+function addMsg(role, text) {
+  const c = document.getElementById('msgs');
+  const w = document.createElement('div');
+  w.className = 'msg ' + role;
+  const b = document.createElement('div');
+  b.className = 'bubble';
+  b.textContent = text;
+  w.appendChild(b);
+  c.appendChild(w);
+  c.scrollTop = c.scrollHeight;
+}
+
+function showTyping() {
+  const c = document.getElementById('msgs');
+  const w = document.createElement('div');
+  w.className = 'msg bot';
+  w.id = 'typing';
+  w.innerHTML = '<div class="typing-bubble"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>';
+  c.appendChild(w);
+  c.scrollTop = c.scrollHeight;
+}
+
+function removeTyping() {
+  const t = document.getElementById('typing');
+  if (t) t.remove();
+}
+
+async function send(text) {
+  const btn = document.getElementById('sendBtn');
+  const inp = document.getElementById('inp');
+  btn.disabled = true;
+  inp.disabled = true;
+  document.getElementById('chips').style.display = 'none';
+  addMsg('user', text);
+  showTyping();
+  try {
+    const reply = await callAPI(text);
+    removeTyping();
+    addMsg('bot', reply);
+  } catch (e) {
+    removeTyping();
+    addMsg('bot', 'Something got caught in the current! Reach us at (786) 368-9922 or info@thekeytothekeys.com.');
+  }
+  btn.disabled = false;
+  inp.disabled = false;
+  inp.focus();
+}
+
+async function sendChip(t) { await send(t); }
+
+async function handleSend() {
+  const inp = document.getElementById('inp');
+  const t = inp.value.trim();
+  if (!t) return;
+  inp.value = '';
+  await send(t);
+}
+
+document.getElementById('inp').addEventListener('keydown', e => {
+  if (e.key === 'Enter') handleSend();
+});
+</script>
+</body>
+</html>
