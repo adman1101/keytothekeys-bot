@@ -308,7 +308,7 @@ ABOUT THE COMPANY:
 - Family-owned boutique vacation rental management, owner: Damian Menendez and team
 - Specializes in: Key Largo, Marathon, Key Colony Beach, Calusa Campground
 - Book direct at thekeytothekeys.com — no platform fees, best rate guaranteed
-- Contact: info@thekeytothekeys.com | (786) 368-9922
+- Contact: info@thekeytothekeys.com | (786) 551-4855
 - Social: @thekeytothekeys on Instagram, TikTok, Facebook
 
 FLORIDA KEYS GEOGRAPHY:
@@ -589,7 +589,7 @@ Best season: December through April | Hurricane season: June through November
 BOOKING:
 - Book direct at thekeytothekeys.com = NO service fees = BEST guaranteed rate vs Airbnb or VRBO
 - Minimum stays and pricing vary by property and season
-- For availability and pricing: thekeytothekeys.com | (786) 368-9922 | info@thekeytothekeys.com
+- For availability and pricing: thekeytothekeys.com | ((786) 551-4855 | info@thekeytothekeys.com
 
 FOR PROPERTY OWNERS:
 - Full-service management: professional photography, listing optimization, guest screening, 24/7 support
@@ -599,7 +599,7 @@ YOUR STYLE:
 - Warm and concise — like a knowledgeable local neighbor who genuinely wants to help
 - 2 to 4 sentences per response unless more detail is clearly needed
 - Always close with a helpful next step or offer
-- Never say you do not know — connect them to the team at (786) 368-9922 or info@thekeytothekeys.com
+- Never say you do not know — connect them to the team at (786) 551-4855 or info@thekeytothekeys.com
 - Light island charm is always welcome
 
 LANGUAGE:
@@ -619,7 +619,7 @@ async function callAPI(msg) {
   });
   const d = await r.json();
   const reply = d.content?.find(b => b.type === 'text')?.text
-    || 'Reach us directly at (786) 368-9922 or info@thekeytothekeys.com!';
+    || 'Reach us directly at (786) 551-4855 or info@thekeytothekeys.com!';
   hist.push({ role: 'assistant', content: reply });
   return reply;
 }
@@ -665,7 +665,7 @@ async function send(text) {
     addMsg('bot', reply);
   } catch (e) {
     removeTyping();
-    addMsg('bot', 'Something got caught in the current! Reach us at (786) 368-9922 or info@thekeytothekeys.com.');
+    addMsg('bot', 'Something got caught in the current! Reach us at (786) 551-4855 or info@thekeytothekeys.com.');
   }
   btn.disabled = false;
   inp.disabled = false;
