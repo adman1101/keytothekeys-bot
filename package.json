@@ -1,0 +1,12 @@
+{
+  "name": "keytothekeys-bot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Keys Concierge — AI concierge bot for The Key to The Keys Vacation Rentals (Netlify Functions)",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@getzep/zep-cloud": "^3.28.0"
+  }
+}
