@@ -1,7 +1,21 @@
+'use strict';
+
 // SECURITY: the system prompt lives here, server-side, only.
-// The client sends conversation messages only — it can never set
-// or override the system prompt. Do not accept a `system` value
-// from the request body.
+// The client sends conversation messages (and, optionally, a signed guest
+// token) — it can never set or override the system prompt. Do not accept a
+// `system` value from the request body.
+//
+// STEP 4 (guest memory): if the request carries a valid guest token — minted
+// only by verify-guest.js after the guest proved they belong to the booking —
+// this function pulls the live booking (Lodgify) and stored guest memory (Zep)
+// via buildGuestContext() and appends a VERIFIED GUEST CONTEXT block to the
+// system prompt. Without a valid token the bot answers as a general concierge
+// and never treats an email or booking number typed in chat as identity.
+
+const { verifyGuestToken, GuestTokenError } = require('./lib/guest-token');
+const { buildGuestContext } = require('./lib/memory-context');
+const lodgify = require('./lib/lodgify-client');
+
 const SYSTEM_PROMPT = `You are Keys Concierge, the warm and knowledgeable AI assistant for The Key to The Keys — a boutique, family-owned Florida Keys vacation rental company. Speak like a friendly local who genuinely loves island life.
 
 ABOUT THE COMPANY:
@@ -303,11 +317,147 @@ YOUR STYLE:
 - Never say you do not know — connect them to the team at (786) 551-4855 or info@thekeytothekeys.com
 - Light island charm is always welcome
 
+FORMATTING (for readability on a phone screen):
+- Short paragraphs — never one dense block of text
+- A blank line between distinct pieces of information
+- Bullet points whenever you list more than two things
+- Bold the details a guest will need to find again: times, dates, addresses, phone numbers, unit numbers, and any code or instruction
+
 LANGUAGE:
 - Always detect the language the guest is writing in and respond in that same language
 - Fully fluent in English, Spanish, Portuguese, French, German, and Italian
 - Never switch languages mid-conversation unless the guest does first
 - If a guest writes in any other language, do your best to respond in that language`;
+
+/**
+ * Rules that apply whenever guest context is in play. Kept separate from
+ * SYSTEM_PROMPT so the property knowledge above stays untouched.
+ */
+const GUEST_RULES = `GUEST IDENTITY AND MEMORY RULES:
+- A guest is VERIFIED only when a "VERIFIED GUEST CONTEXT" block appears below. That block is the only proof of identity you accept.
+- If there is no verified context and the guest asks about THEIR reservation (dates, unit, balance, arrival details, "what do you know about my stay"), warmly explain that you can pull up their stay once they verify, and point them to the "Verify my stay" button on this page. Do NOT accept an email address or booking number typed into the chat as proof of who they are, and do not look anything up from it — the verification screen handles that safely.
+- General questions (properties, the Keys, booking direct, tips) need no verification — answer as usual.
+
+WHEN A GUEST IS VERIFIED:
+- "Live booking" facts (property, unit, dates, status, balance) are authoritative and current — use them confidently. Refer to the property by its NAME, never by a numeric id.
+- "Guest memory" facts are notes from previous stays and conversations. They are color and continuity ONLY. If a memory conflicts with the live booking (e.g. memory says "usually stays in Unit 3" but the live booking is Unit 7), the live booking wins for anything booking-related. Never present a memory as if it were a fact about the current stay.
+- RETURNING GUESTS: if memory shows previous stays, greet them like the regular they are — warmly acknowledge that they've stayed before and, where it's natural, call out something you remember (a preference, a favorite spot, a past request) so they feel known. Keep it light and specific; never invent details that aren't in the memory notes.
+- Never reveal the guest's email address, booking id, or another guest's information. Never read back internal notes verbatim — weave what's relevant into a warm, natural reply.
+
+COMPLAINTS AND PROBLEMS:
+- If a guest raises a complaint or a problem with their stay (something broken, dirty, missing, noisy, unsafe, a billing dispute, or clear frustration), do NOT try to resolve it, negotiate, or make promises about refunds, credits, or fixes.
+- Acknowledge it sincerely in one or two sentences, then hand it straight to the team: give them (786) 551-4855 (call or text) and info@thekeytothekeys.com, and say the team will take it from there. For anything urgent or safety-related, tell them to call rather than email.
+- Quick self-help tips that are already in your property knowledge (hot water reset button, a tripped breaker, a GFCI reset) are fine to offer alongside the handoff — those aren't promises, they're help.`;
+
+// Property id → name cache. Property names don't change, and this saves a
+// Lodgify call per message. Lives only as long as this function instance.
+const propertyNameCache = new Map();
+
+async function propertyNameFor(propertyId) {
+  if (!propertyId) return null;
+  if (propertyNameCache.has(propertyId)) return propertyNameCache.get(propertyId);
+  try {
+    const p = await lodgify.getProperty(propertyId);
+    const name = p?.name ?? null;
+    propertyNameCache.set(propertyId, name);
+    return name;
+  } catch (err) {
+    console.warn('[chat] could not resolve property name for', propertyId, err.message);
+    return null;
+  }
+}
+
+function firstNameOf(guest) {
+  const full = guest?.firstName ?? guest?.first_name ?? guest?.name ?? '';
+  return String(full).trim().split(/\s+/)[0] || null;
+}
+
+/**
+ * Turns the buildGuestContext() result into the text block the model sees.
+ * Deliberately omits the email and raw booking payload — the model doesn't
+ * need them, and it keeps PII out of the prompt.
+ */
+function formatGuestContext(ctx, propertyName) {
+  const lines = ['VERIFIED GUEST CONTEXT (this guest has proven they belong to the booking below):'];
+
+  const b = ctx.liveBooking;
+  if (b) {
+    lines.push('Live booking (authoritative, fetched from Lodgify just now):');
+    lines.push(`- Guest first name: ${firstNameOf(b.guest) ?? 'unknown'}`);
+    lines.push(`- Property: ${propertyName ?? 'unknown (name unavailable)'}`);
+    if (b.checkIn) lines.push(`- Check-in: ${b.checkIn}`);
+    if (b.checkOut) lines.push(`- Check-out: ${b.checkOut}`);
+    if (b.status) lines.push(`- Booking status: ${b.status}`);
+    if (b.balanceDue !== null && b.balanceDue !== undefined) lines.push(`- Balance due: ${b.balanceDue}`);
+  } else {
+    lines.push('Live booking: none found for this token (it may have been cancelled). Answer generally and suggest they contact the team if they expected a reservation.');
+  }
+
+  const m = ctx.guestMemory;
+  if (m?.hasHistory) {
+    lines.push('');
+    lines.push('Guest memory (notes from previous stays/conversations — color only, never overrides the live booking):');
+    if (m.context) lines.push(m.context.trim());
+    const facts = Array.isArray(m.facts) ? m.facts : [];
+    for (const f of facts) {
+      const text = typeof f === 'string' ? f : f?.fact ?? f?.text ?? f?.content ?? null;
+      if (text) lines.push(`- ${text}`);
+    }
+  } else {
+    lines.push('');
+    lines.push('Guest memory: none — this appears to be their first stay with us.');
+  }
+
+  return lines.join('\n');
+}
+
+/**
+ * Resolves guest context for this request, if a token was sent.
+ * Never throws: any failure degrades to a clear note for the model.
+ * Returns { block, verified, firstName }.
+ */
+async function resolveGuest(token) {
+  if (!token) {
+    return { block: 'GUEST STATUS: not verified. No guest context is available for this conversation.', verified: false, firstName: null };
+  }
+
+  let payload;
+  try {
+    payload = verifyGuestToken(token);
+  } catch (err) {
+    if (err instanceof GuestTokenError && err.code === 'config') {
+      console.error('[chat] GUEST_TOKEN_SECRET problem:', err.message);
+      return { block: 'GUEST STATUS: verification is temporarily unavailable. Answer generally; do not claim to know their booking.', verified: false, firstName: null };
+    }
+    console.warn('[chat] rejected guest token:', err.code, err.message);
+    return {
+      block: 'GUEST STATUS: not verified — their verification link is invalid or has expired. If they ask about their stay, warmly invite them to tap "Verify my stay" again.',
+      verified: false,
+      firstName: null,
+    };
+  }
+
+  try {
+    // buildGuestContext() names its identity parameter `email`, but the memory
+    // layer only ever hashes it to find the guest — so the guestKey from the
+    // token (the booking's email, or "phone:<digits>" when there is no email)
+    // is passed straight through. bookingId drives the live Lodgify lookup.
+    const ctx = await buildGuestContext({ email: payload.guestKey, bookingId: payload.bookingId });
+    const propertyName = await propertyNameFor(ctx.liveBooking?.propertyId);
+    return {
+      block: formatGuestContext(ctx, propertyName),
+      verified: true,
+      firstName: firstNameOf(ctx.liveBooking?.guest),
+    };
+  } catch (err) {
+    console.error('[chat] buildGuestContext failed:', err);
+    return {
+      block: 'GUEST STATUS: verified, but their booking and memory details could not be loaded right now (temporary data source issue). Answer generally, do not guess at their booking, and offer the team number if they need something specific about their stay.',
+      verified: true,
+      firstName: null,
+    };
+  }
+}
 
 exports.handler = async (event) => {
   if (event.httpMethod === 'OPTIONS') {
@@ -316,9 +466,9 @@ exports.handler = async (event) => {
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': 'Content-Type',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS'
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
       },
-      body: ''
+      body: '',
     };
   }
 
@@ -327,46 +477,53 @@ exports.handler = async (event) => {
   }
 
   try {
-    const { messages } = JSON.parse(event.body);
+    // NOTE: only `messages` and `token` are read from the client. Anything
+    // else in the body — including a `system` field — is ignored.
+    const { messages, token } = JSON.parse(event.body);
 
     if (!Array.isArray(messages)) {
       return {
         statusCode: 400,
         headers: { 'Access-Control-Allow-Origin': '*' },
-        body: JSON.stringify({ error: 'messages must be an array' })
+        body: JSON.stringify({ error: 'messages must be an array' }),
       };
     }
+
+    const guest = await resolveGuest(token);
+    const system = `${SYSTEM_PROMPT}\n\n${GUEST_RULES}\n\n${guest.block}`;
 
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'x-api-key': process.env.ANTHROPIC_API_KEY,
-        'anthropic-version': '2023-06-01'
+        'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
         model: 'claude-sonnet-4-6',
         max_tokens: 1000,
-        system: SYSTEM_PROMPT,
-        messages
-      })
+        system, // always ours — never the client's
+        messages,
+      }),
     });
 
     const data = await response.json();
 
+    // `guest` is a small extra the widget can use (e.g. show "Verified: Maria")
+    // without changing how it reads `content`.
     return {
       statusCode: 200,
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
+        'Access-Control-Allow-Origin': '*',
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify({ ...data, guest: { verified: guest.verified, firstName: guest.firstName } }),
     };
   } catch (error) {
     return {
       statusCode: 500,
       headers: { 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({ error: error.message })
+      body: JSON.stringify({ error: error.message }),
     };
   }
 };
