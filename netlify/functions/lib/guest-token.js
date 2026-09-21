@@ -3,20 +3,22 @@
 /**
  * Guest session token — Step 4.
  *
- * Signs a verified guest's identity (bookingId + the email on that booking)
- * into an opaque, tamper-proof token. chat.js trusts ONLY this token as
+ * Signs a verified guest's identity (bookingId + a guestKey) into an opaque,
+ * tamper-proof token. chat.js trusts ONLY this token as
  * proof of who the guest is — never an email or booking number typed into
  * the chat.
  *
  * A token is minted in exactly one place: verify-guest.js, and only AFTER
  * the guest has proven they belong to the booking (last name matches the
- * live Lodgify record). The email in the payload therefore comes from the
+ * live Lodgify record). The guestKey in the payload therefore comes from the
  * live booking at verification time, not from anything the guest typed.
  *
- * Why the email rides in the token: buildGuestContext() (memory-context.js)
- * requires the guest's email to look up Zep memory. Carrying it here means
- * chat.js doesn't need an extra Lodgify round-trip on every message just
- * to rediscover it. Booking data itself is still always fetched live.
+ * guestKey is the stable identity the memory layer (Zep) hashes to find a
+ * guest across stays: the email on the booking when there is one, otherwise
+ * the phone number (Airbnb bookings often arrive in Lodgify with no email).
+ * See verify-guest.js -> guestKeyFor(). Carrying it in the token means
+ * chat.js doesn't need an extra Lodgify round-trip on every message just to
+ * rediscover it. Booking data itself is still always fetched live.
  *
  * Format: base64url(payload JSON) + '.' + base64url(HMAC-SHA256 signature)
  * Signed with GUEST_TOKEN_SECRET — a separate secret from
@@ -61,18 +63,18 @@ function sign(payloadB64) {
  *
  * @param {object} params
  * @param {string|number} params.bookingId - required, the Lodgify booking id
- * @param {string} params.email - required, the guest email on that live booking
+ * @param {string} params.guestKey - required, the guest's identity key from the live booking (email, or phone fallback)
  * @param {number} [params.ttlSeconds] - defaults to 90 days
  * @returns {string} opaque token safe to keep in the browser and send with each chat request
  */
-function createGuestToken({ bookingId, email, ttlSeconds = DEFAULT_TTL_SECONDS } = {}) {
+function createGuestToken({ bookingId, guestKey, ttlSeconds = DEFAULT_TTL_SECONDS } = {}) {
   if (!bookingId) throw new GuestTokenError('createGuestToken requires a bookingId', 'malformed');
-  if (!email) throw new GuestTokenError('createGuestToken requires the email on the live booking', 'malformed');
+  if (!guestKey) throw new GuestTokenError('createGuestToken requires a guestKey from the live booking', 'malformed');
 
   const now = Math.floor(Date.now() / 1000);
   const payload = {
     bookingId,
-    email: String(email).trim().toLowerCase(),
+    guestKey: String(guestKey).trim().toLowerCase(),
     iat: now,
     exp: now + ttlSeconds,
   };
@@ -87,7 +89,7 @@ function createGuestToken({ bookingId, email, ttlSeconds = DEFAULT_TTL_SECONDS }
  * contents — never decode a token's payload anywhere else.
  *
  * @param {string} token
- * @returns {{ bookingId: string|number, email: string, iat: number, exp: number }}
+ * @returns {{ bookingId: string|number, guestKey: string, iat: number, exp: number }}
  */
 function verifyGuestToken(token) {
   if (typeof token !== 'string' || token.split('.').length !== 2) {
@@ -114,8 +116,8 @@ function verifyGuestToken(token) {
   if (!payload.exp || Math.floor(Date.now() / 1000) > payload.exp) {
     throw new GuestTokenError('Token has expired.', 'expired');
   }
-  if (!payload.bookingId || !payload.email) {
-    throw new GuestTokenError('Token payload is missing bookingId or email.', 'malformed');
+  if (!payload.bookingId || !payload.guestKey) {
+    throw new GuestTokenError('Token payload is missing bookingId or guestKey.', 'malformed');
   }
 
   return payload;
