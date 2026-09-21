@@ -50,7 +50,7 @@ function json(statusCode, body) {
 function normalizeName(value) {
   return String(value ?? '')
     .normalize('NFD')
-    .replace(/[̀-ͯ]/g, '')
+    .replace(/[\u0300-\u036f]/g, '')
     .trim()
     .toLowerCase();
 }
@@ -72,6 +72,22 @@ function lastNameMatches(guest, typedLastName) {
 function firstNameOf(guest) {
   const full = guest?.firstName ?? guest?.first_name ?? guest?.name ?? '';
   return String(full).trim().split(/\s+/)[0] || null;
+}
+
+/**
+ * Lodgify's booking payload has used several names for the property id over
+ * API versions (propertyId, property_id, PropertyId, rental_id, and per-room
+ * ids). Check them all so a naming difference never blanks out the property.
+ */
+function propertyIdOf(booking) {
+  if (!booking) return null;
+  const raw = booking.raw ?? booking;
+  const direct =
+    booking.propertyId ?? raw.propertyId ?? raw.property_id ?? raw.PropertyId ??
+    raw.rental_id ?? raw.rentalId ?? raw.RentalId ?? null;
+  if (direct) return direct;
+  const room = Array.isArray(raw.rooms) ? raw.rooms[0] : Array.isArray(raw.roomTypes) ? raw.roomTypes[0] : null;
+  return room?.property_id ?? room?.propertyId ?? room?.PropertyId ?? null;
 }
 
 function dayOf(value) {
@@ -182,12 +198,12 @@ exports.handler = async (event) => {
           matches.map(async (b) => {
             let name = null;
             try {
-              const p = await lodgify.getProperty(b.propertyId);
+              const p = await lodgify.getProperty(propertyIdOf(b));
               name = p?.name ?? null;
             } catch {
               /* name is a nicety; the id is enough to retry */
             }
-            return { propertyId: b.propertyId, propertyName: name };
+            return { propertyId: propertyIdOf(b), propertyName: name };
           })
         );
         return json(200, { ok: false, needsProperty: true, options });
@@ -222,7 +238,7 @@ exports.handler = async (event) => {
         firstName: firstNameOf(booking.guest),
         checkIn: booking.checkIn ?? booking.arrival ?? null,
         checkOut: booking.checkOut ?? booking.departure ?? null,
-        propertyId: booking.propertyId ?? null,
+        propertyId: propertyIdOf(booking),
       },
     });
   } catch (err) {

@@ -367,6 +367,22 @@ async function propertyNameFor(propertyId) {
   }
 }
 
+/**
+ * Lodgify's booking payload has used several names for the property id over
+ * API versions (propertyId, property_id, PropertyId, rental_id, and per-room
+ * ids). Check them all so a naming difference never blanks out the property.
+ */
+function propertyIdOf(booking) {
+  if (!booking) return null;
+  const raw = booking.raw ?? booking;
+  const direct =
+    booking.propertyId ?? raw.propertyId ?? raw.property_id ?? raw.PropertyId ??
+    raw.rental_id ?? raw.rentalId ?? raw.RentalId ?? null;
+  if (direct) return direct;
+  const room = Array.isArray(raw.rooms) ? raw.rooms[0] : Array.isArray(raw.roomTypes) ? raw.roomTypes[0] : null;
+  return room?.property_id ?? room?.propertyId ?? room?.PropertyId ?? null;
+}
+
 function firstNameOf(guest) {
   const full = guest?.firstName ?? guest?.first_name ?? guest?.name ?? '';
   return String(full).trim().split(/\s+/)[0] || null;
@@ -384,7 +400,7 @@ function formatGuestContext(ctx, propertyName) {
   if (b) {
     lines.push('Live booking (authoritative, fetched from Lodgify just now):');
     lines.push(`- Guest first name: ${firstNameOf(b.guest) ?? 'unknown'}`);
-    lines.push(`- Property: ${propertyName ?? 'unknown (name unavailable)'}`);
+    lines.push(propertyName ? `- Property: ${propertyName}` : '- Property: name not available right now — this is a minor data gap, NOT a problem with the booking. Do not send the guest to the team over it; simply refer to "your stay" and answer normally.');
     if (b.checkIn) lines.push(`- Check-in: ${b.checkIn}`);
     if (b.checkOut) lines.push(`- Check-out: ${b.checkOut}`);
     if (b.status) lines.push(`- Booking status: ${b.status}`);
@@ -443,7 +459,7 @@ async function resolveGuest(token) {
     // token (the booking's email, or "phone:<digits>" when there is no email)
     // is passed straight through. bookingId drives the live Lodgify lookup.
     const ctx = await buildGuestContext({ email: payload.guestKey, bookingId: payload.bookingId });
-    const propertyName = await propertyNameFor(ctx.liveBooking?.propertyId);
+    const propertyName = await propertyNameFor(propertyIdOf(ctx.liveBooking));
     return {
       block: formatGuestContext(ctx, propertyName),
       verified: true,
