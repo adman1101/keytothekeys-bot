@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0B6464" />
+  <title>Keys Concierge — The Key to The Keys</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --teal: #0B6464; --teal-dark: #084f4f; --teal-soft: #e6f2f2; --teal-line: #c8dede;
+      --ink: #1a2a2a; --muted: #6b8a8a; --bg: #f0f4f4; --bubble: #f0f6f6; --green: #1D9E75; --red: #b3261e;
+    }
+    html, body { height: 100%; }
+    body {
+      font-family: 'Inter', sans-serif; background: var(--bg); color: var(--ink);
+      display: flex; flex-direction: column; align-items: center;
+      min-height: 100dvh; padding: 0;
+    }
+    .wrapper {
+      width: 100%; max-width: 560px; display: flex; flex-direction: column;
+      height: 100dvh; padding: 12px 12px calc(8px + env(safe-area-inset-bottom));
+    }
+    .brand-tag {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.08em; color: var(--teal);
+      text-transform: uppercase; text-align: center; padding: 2px 0 8px;
+    }
+    .chat {
+      display: flex; flex-direction: column; flex: 1; min-height: 0;
+      border-radius: 16px; border: 1px solid #d4e4e4; overflow: hidden; background: #fff;
+      box-shadow: 0 2px 16px rgba(11,100,100,0.08);
+    }
+    .chat-header {
+      padding: 12px 14px; border-bottom: 1px solid #e8f0f0; background: #fff;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .avatar {
+      width: 38px; height: 38px; border-radius: 50%; background: var(--teal);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .avatar svg { width: 18px; height: 18px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .header-text { flex: 1; min-width: 0; }
+    .header-text h1 { font-size: 15px; font-weight: 600; line-height: 1.3; display: flex; align-items: center; gap: 6px; }
+    .online-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+    .header-text p { font-size: 12px; color: var(--muted); margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .verify-btn {
+      font-family: inherit; font-size: 12px; font-weight: 600; padding: 7px 12px; border-radius: 20px;
+      border: 1px solid var(--teal); background: #fff; color: var(--teal); cursor: pointer; white-space: nowrap;
+    }
+    .verify-btn:hover { background: var(--teal-soft); }
+    .verified-chip {
+      display: none; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; color: var(--green);
+      background: #e6f7ee; padding: 6px 10px; border-radius: 20px; white-space: nowrap;
+    }
+    .verified-chip svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+    .messages {
+      flex: 1; overflow-y: auto; padding: 16px 14px; display: flex; flex-direction: column; gap: 10px;
+      scroll-behavior: smooth; -webkit-overflow-scrolling: touch;
+    }
+    .msg { display: flex; max-width: 88%; }
+    .msg.user { align-self: flex-end; }
+    .msg.bot { align-self: flex-start; }
+    .bubble { padding: 10px 14px; border-radius: 14px; font-size: 14px; line-height: 1.55; overflow-wrap: anywhere; }
+    .msg.user .bubble { background: var(--teal); color: #fff; border-bottom-right-radius: 4px; }
+    .msg.bot .bubble { background: var(--bubble); color: var(--ink); border-bottom-left-radius: 4px; }
+    .bubble p + p { margin-top: 8px; }
+    .bubble ul { margin: 6px 0 6px 18px; }
+    .bubble li + li { margin-top: 3px; }
+    .bubble strong { font-weight: 600; }
+    .bubble a { color: inherit; text-decoration: underline; }
+    .notice { align-self: center; font-size: 12px; color: var(--muted); text-align: center; padding: 4px 10px; }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 14px 10px; }
+    .chip {
+      font-size: 12px; font-family: inherit; padding: 6px 12px; border-radius: 20px; border: 1px solid var(--teal-line);
+      background: #fff; color: #3a6464; cursor: pointer; transition: background .15s, color .15s;
+    }
+    .chip:hover { background: var(--teal-soft); color: var(--teal); }
+
+    .input-area { padding: 10px 12px; border-top: 1px solid #e8f0f0; display: flex; gap: 8px; align-items: center; background: #fff; }
+    .inp {
+      flex: 1; padding: 10px 14px; border-radius: 22px; border: 1px solid var(--teal-line); background: #f7fbfb;
+      color: var(--ink); font-size: 16px; font-family: inherit; outline: none; transition: border-color .15s; min-width: 0;
+    }
+    .inp:focus { border-color: var(--teal); }
+    .send-btn {
+      width: 40px; height: 40px; border-radius: 50%; border: none; background: var(--teal); color: #fff; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background .15s;
+    }
+    .send-btn:hover { background: var(--teal-dark); }
+    .send-btn:disabled { opacity: .45; cursor: default; }
+    .send-btn svg { width: 16px; height: 16px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    .typing-bubble { padding: 10px 14px; border-radius: 14px; border-bottom-left-radius: 4px; background: var(--bubble); display: flex; gap: 3px; align-items: center; }
+    .dot { width: 5px; height: 5px; border-radius: 50%; background: #7aabab; animation: bounce 1.2s infinite; }
+    .dot:nth-child(2) { animation-delay: .2s; } .dot:nth-child(3) { animation-delay: .4s; }
+    @keyframes bounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-4px); } }
+
+    .powered { font-size: 11px; color: #8aabab; text-align: center; padding: 8px 0 2px; }
+    .powered a { color: var(--teal); text-decoration: none; }
+
+    /* ---- Verify sheet ---- */
+    .sheet-backdrop {
+      position: fixed; inset: 0; background: rgba(11,100,100,0.28); display: none; align-items: flex-end; justify-content: center; z-index: 10;
+    }
+    .sheet-backdrop.open { display: flex; }
+    .sheet {
+      width: 100%; max-width: 560px; background: #fff; border-radius: 18px 18px 0 0; padding: 18px 18px calc(18px + env(safe-area-inset-bottom));
+      box-shadow: 0 -4px 24px rgba(0,0,0,.12); animation: rise .18s ease-out;
+    }
+    @keyframes rise { from { transform: translateY(30px); opacity: 0; } to { transform: none; opacity: 1; } }
+    @media (min-width: 600px) { .sheet-backdrop { align-items: center; } .sheet { border-radius: 18px; padding-bottom: 18px; } }
+    .sheet h2 { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
+    .sheet p.sub { font-size: 13px; color: var(--muted); margin-bottom: 14px; line-height: 1.45; }
+    .field { margin-bottom: 12px; }
+    .field label { display: block; font-size: 12px; font-weight: 600; color: #3a6464; margin-bottom: 5px; }
+    .field input {
+      width: 100%; padding: 11px 13px; border-radius: 10px; border: 1px solid var(--teal-line); background: #f7fbfb;
+      font-family: inherit; font-size: 16px; color: var(--ink); outline: none;
+    }
+    .field input:focus { border-color: var(--teal); }
+    .field input[readonly] { background: var(--teal-soft); color: var(--teal); font-weight: 600; border-color: transparent; }
+    .field .hint { font-size: 12px; color: var(--muted); margin-top: 5px; }
+    .link-btn { background: none; border: none; color: var(--teal); font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer; padding: 0; text-decoration: underline; }
+    .primary-btn {
+      width: 100%; padding: 12px; border-radius: 12px; border: none; background: var(--teal); color: #fff;
+      font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 4px;
+    }
+    .primary-btn:hover { background: var(--teal-dark); }
+    .primary-btn:disabled { opacity: .55; cursor: default; }
+    .ghost-btn { width: 100%; padding: 10px; border-radius: 12px; border: none; background: none; color: var(--muted); font-family: inherit; font-size: 13px; cursor: pointer; margin-top: 4px; }
+    .err { display: none; font-size: 13px; color: var(--red); background: #fdecec; padding: 9px 12px; border-radius: 10px; margin-bottom: 12px; line-height: 1.45; }
+    .err.show { display: block; }
+    .options { display: none; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+    .options.show { display: flex; }
+    .option-btn { padding: 11px 13px; border-radius: 10px; border: 1px solid var(--teal-line); background: #fff; font-family: inherit; font-size: 14px; color: var(--ink); cursor: pointer; text-align: left; }
+    .option-btn:hover { background: var(--teal-soft); border-color: var(--teal); }
+  </style>
+</head>
+<body>
+
+<div class="wrapper">
+  <div class="brand-tag">The Key to The Keys &mdash; Your Personal Concierge</div>
+
+  <div class="chat">
+    <div class="chat-header">
+      <div class="avatar">
+        <svg viewBox="0 0 24 24"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0 3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+      </div>
+      <div class="header-text">
+        <h1>Keys Concierge <span class="online-dot" aria-label="online"></span></h1>
+        <p id="subtitle">Your local Florida Keys guide &bull; 24/7</p>
+      </div>
+      <button class="verify-btn" id="verifyBtn" onclick="openSheet()">Verify my stay</button>
+      <div class="verified-chip" id="verifiedChip">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span id="verifiedName">Verified</span>
+      </div>
+    </div>
+
+    <div class="messages" id="msgs"></div>
+
+    <div class="chips" id="chips"></div>
+
+    <div class="input-area">
+      <input class="inp" id="inp" type="text" placeholder="Ask me anything about your stay or the Keys..." autocomplete="off" />
+      <button class="send-btn" id="sendBtn" onclick="handleSend()" aria-label="Send message">
+        <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="powered">Powered by <a href="https://audaz.agency" target="_blank" rel="noopener">AUDAZ Agency AI</a> &bull; thekeytothekeys.com</div>
+</div>
+
+<!-- Verify sheet -->
+<div class="sheet-backdrop" id="sheetBackdrop" onclick="if (event.target === this) closeSheet()">
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+    <h2 id="sheetTitle">Let's pull up your stay</h2>
+    <p class="sub" id="sheetSub">Enter the last name on the booking and we'll take it from there.</p>
+
+    <div class="err" id="verifyErr"></div>
+    <div class="options" id="propertyOptions"></div>
+
+    <div class="field" id="bookingField">
+      <label for="bookingInput">Booking number</label>
+      <input id="bookingInput" type="text" inputmode="numeric" autocomplete="off" placeholder="e.g. B22552956" />
+      <div class="hint" id="bookingHint"><button class="link-btn" onclick="switchToDate()">Don't have your booking number?</button></div>
+    </div>
+
+    <div class="field" id="dateField" style="display:none">
+      <label for="dateInput">Check-in date</label>
+      <input id="dateInput" type="date" />
+      <div class="hint"><button class="link-btn" onclick="switchToBooking()">I have my booking number</button></div>
+    </div>
+
+    <div class="field">
+      <label for="lastNameInput">Last name on the booking</label>
+      <input id="lastNameInput" type="text" autocomplete="family-name" autocapitalize="words" placeholder="e.g. Garcia" />
+    </div>
+
+    <button class="primary-btn" id="verifySubmit" onclick="submitVerify()">Verify</button>
+    <button class="ghost-btn" onclick="closeSheet()">Not now</button>
+  </div>
+</div>
+
+<script>
+// ---------------------------------------------------------------------------
+// Keys Concierge — guest-facing page (Step 4 front end)
+//
+// Identity flow:
+//   1. A guest arrives from Lodgify's "Booking accepted" message with ?b=<booking>.
+//      We prefill the booking number, ask ONLY for the last name, and call
+//      /verify-guest. On a match we get a signed session token.
+//   2. No link? "Verify my stay" opens the same sheet; the guest types the
+//      booking number, or switches to check-in date if they don't have it.
+//   3. The token lives in sessionStorage for the visit and is sent with every
+//      chat message. chat.js decides what it means — this page never treats
+//      anything typed into the chat as identity.
+//
+// SECURITY: this page never sends a `system` prompt. Only messages + token.
+// ---------------------------------------------------------------------------
+
+const ON_NETLIFY = /netlify\.app$/.test(location.hostname) || /thekeytothekeys\.com$/.test(location.hostname);
+const API = (ON_NETLIFY ? '' : 'https://keytothekeys-bot.netlify.app') + '/.netlify/functions';
+const TEAM_PHONE = '(786) 551-4855';
+const TEAM_EMAIL = 'info@thekeytothekeys.com';
+
+let hist = [];
+let session = loadSession(); // { token, guest:{firstName, checkIn, checkOut, propertyId} } | null
+let verifyMode = 'booking';  // 'booking' | 'date'
+let pendingPropertyId = null;
+let prefilledBooking = null;
+
+// ---------- session ----------
+function loadSession() {
+  try { const raw = sessionStorage.getItem('kc_session'); return raw ? JSON.parse(raw) : null; } catch { return null; }
+}
+function saveSession(s) { session = s; try { s ? sessionStorage.setItem('kc_session', JSON.stringify(s)) : sessionStorage.removeItem('kc_session'); } catch {} }
+
+// ---------- rendering ----------
+function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+
+/** Tiny, safe renderer for the bot's markdown-lite: **bold**, "- " bullets, paragraphs. HTML is escaped first. */
+function renderBot(text) {
+  const lines = esc(text).split(/\r?\n/);
+  let html = '', inList = false, para = [];
+  const flushPara = () => { if (para.length) { html += `<p>${para.join('<br>')}</p>`; para = []; } };
+  const closeList = () => { if (inList) { html += '</ul>'; inList = false; } };
+  for (const raw of lines) {
+    const line = raw.trim();
+    const m = /^[-•*]\s+(.*)$/.exec(line);
+    if (m) { flushPara(); if (!inList) { html += '<ul>'; inList = true; } html += `<li>${m[1]}</li>`; continue; }
+    closeList();
+    if (!line) { flushPara(); continue; }
+    para.push(line);
+  }
+  flushPara(); closeList();
+  return html
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\b(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
+}
+
+function addMsg(role, text) {
+  const c = document.getElementById('msgs');
+  const w = document.createElement('div'); w.className = 'msg ' + role;
+  const b = document.createElement('div'); b.className = 'bubble';
+  if (role === 'bot') b.innerHTML = renderBot(text); else b.textContent = text;
+  w.appendChild(b); c.appendChild(w); c.scrollTop = c.scrollHeight;
+}
+function addNotice(text) {
+  const c = document.getElementById('msgs');
+  const n = document.createElement('div'); n.className = 'notice'; n.textContent = text;
+  c.appendChild(n); c.scrollTop = c.scrollHeight;
+}
+function showTyping() {
+  const c = document.getElementById('msgs');
+  const w = document.createElement('div'); w.className = 'msg bot'; w.id = 'typing';
+  w.innerHTML = '<div class="typing-bubble"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>';
+  c.appendChild(w); c.scrollTop = c.scrollHeight;
+}
+function removeTyping() { const t = document.getElementById('typing'); if (t) t.remove(); }
+
+function setChips(list) {
+  const el = document.getElementById('chips');
+  el.innerHTML = '';
+  for (const [label, prompt] of list) {
+    const b = document.createElement('button'); b.className = 'chip'; b.textContent = label;
+    b.onclick = () => send(prompt);
+    el.appendChild(b);
+  }
+}
+
+const GENERAL_CHIPS = [
+  ['Our properties', 'What properties do you have available?'],
+  ['Things to do', 'What are the best things to do in the Keys?'],
+  ['Book direct', 'Why should I book direct with you?'],
+  ['Talk to the team', 'How do I reach the team?'],
+];
+const STAY_CHIPS = [
+  ['My stay details', 'What do you know about my stay?'],
+  ['Arrival & parking', 'How do I get in and where do I park?'],
+  ['Wi-Fi & TV', 'How do the Wi-Fi and TVs work at my unit?'],
+  ['Things to do nearby', 'What do you recommend near my unit?'],
+  ['Check-out', 'What do I need to do at check-out?'],
+];
+
+// ---------- header state ----------
+function applyHeader() {
+  const chip = document.getElementById('verifiedChip');
+  const btn = document.getElementById('verifyBtn');
+  const sub = document.getElementById('subtitle');
+  if (session?.token) {
+    chip.style.display = 'flex';
+    document.getElementById('verifiedName').textContent = session.guest?.firstName ? `Verified · ${session.guest.firstName}` : 'Verified';
+    btn.style.display = 'none';
+    sub.textContent = session.guest?.checkIn ? `Your stay: ${fmtRange(session.guest.checkIn, session.guest.checkOut)}` : 'Your stay is pulled up';
+    setChips(STAY_CHIPS);
+  } else {
+    chip.style.display = 'none';
+    btn.style.display = '';
+    sub.textContent = 'Your local Florida Keys guide • 24/7';
+    setChips(GENERAL_CHIPS);
+  }
+}
+
+function fmtRange(a, b) {
+  const f = (iso) => { const d = new Date(iso + (iso.length === 10 ? 'T12:00:00' : '')); return isNaN(d) ? iso : d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' }); };
+  return b ? `${f(a)} – ${f(b)}` : f(a);
+}
+
+// ---------- chat ----------
+async function callAPI(msg) {
+  hist.push({ role: 'user', content: msg });
+  const r = await fetch(`${API}/chat`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ messages: hist, token: session?.token || undefined }),
+  });
+  const d = await r.json();
+  const reply = d.content?.find(b => b.type === 'text')?.text
+    || `Reach us directly at ${TEAM_PHONE} or ${TEAM_EMAIL}!`;
+  hist.push({ role: 'assistant', content: reply });
+
+  // If we sent a token but the server no longer accepts it, drop the session so
+  // the guest can re-verify instead of silently chatting unverified.
+  if (session?.token && d.guest && d.guest.verified === false) {
+    saveSession(null); applyHeader();
+    addNotice('Your verification has expired — tap "Verify my stay" to pull your booking back up.');
+  }
+  return reply;
+}
+
+async function send(text) {
+  const btn = document.getElementById('sendBtn');
+  const inp = document.getElementById('inp');
+  btn.disabled = true; inp.disabled = true;
+  document.getElementById('chips').style.display = 'none';
+  addMsg('user', text);
+  showTyping();
+  try {
+    const reply = await callAPI(text);
+    removeTyping(); addMsg('bot', reply);
+  } catch (e) {
+    removeTyping();
+    addMsg('bot', `Something got caught in the current! Reach us at ${TEAM_PHONE} or ${TEAM_EMAIL}.`);
+  }
+  btn.disabled = false; inp.disabled = false; inp.focus();
+  // Verified guests keep their stay shortcuts; general visitors get the
+  // uncluttered chat after their first message (same as the site widget).
+  if (session?.token) document.getElementById('chips').style.display = '';
+}
+
+async function handleSend() {
+  const inp = document.getElementById('inp');
+  const t = inp.value.trim();
+  if (!t) return;
+  inp.value = '';
+  await send(t);
+}
+document.getElementById('inp').addEventListener('keydown', e => { if (e.key === 'Enter') handleSend(); });
+
+// ---------- verify sheet ----------
+function openSheet() {
+  document.getElementById('verifyErr').className = 'err';
+  document.getElementById('propertyOptions').className = 'options';
+  pendingPropertyId = null;
+  document.getElementById('sheetBackdrop').classList.add('open');
+  setTimeout(() => document.getElementById(prefilledBooking ? 'lastNameInput' : (verifyMode === 'booking' ? 'bookingInput' : 'dateInput')).focus(), 50);
+}
+function closeSheet() { document.getElementById('sheetBackdrop').classList.remove('open'); }
+function switchToDate() {
+  verifyMode = 'date';
+  document.getElementById('bookingField').style.display = 'none';
+  document.getElementById('dateField').style.display = '';
+  document.getElementById('sheetSub').textContent = 'No problem — your check-in date and last name will do.';
+  document.getElementById('dateInput').focus();
+}
+function switchToBooking() {
+  verifyMode = 'booking';
+  document.getElementById('dateField').style.display = 'none';
+  document.getElementById('bookingField').style.display = '';
+  document.getElementById('sheetSub').textContent = "It's in your booking confirmation, e.g. B22552956.";
+  document.getElementById('bookingInput').focus();
+}
+function showErr(msg) { const e = document.getElementById('verifyErr'); e.textContent = msg; e.className = 'err show'; }
+
+async function submitVerify() {
+  const lastName = document.getElementById('lastNameInput').value.trim();
+  const bookingId = prefilledBooking || document.getElementById('bookingInput').value.trim();
+  const checkIn = document.getElementById('dateInput').value;
+  const btn = document.getElementById('verifySubmit');
+  document.getElementById('verifyErr').className = 'err';
+
+  if (!lastName) return showErr('Please enter the last name on the booking.');
+  if (verifyMode === 'booking' && !bookingId) return showErr('Please enter your booking number, or switch to check-in date.');
+  if (verifyMode === 'date' && !checkIn) return showErr('Please pick your check-in date.');
+
+  const body = { lastName };
+  if (verifyMode === 'booking') body.bookingId = bookingId; else { body.checkIn = checkIn; if (pendingPropertyId) body.propertyId = pendingPropertyId; }
+
+  btn.disabled = true; btn.textContent = 'Checking…';
+  try {
+    const r = await fetch(`${API}/verify-guest`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+    const d = await r.json();
+
+    if (d.ok) {
+      saveSession({ token: d.token, guest: d.guest || {} });
+      closeSheet(); applyHeader();
+      const name = d.guest?.firstName ? `, ${d.guest.firstName}` : '';
+      const when = d.guest?.checkIn ? ` I've got your stay pulled up — ${fmtRange(d.guest.checkIn, d.guest.checkOut)}.` : " I've got your stay pulled up.";
+      addMsg('bot', `Welcome${name}! 🌴${when}\n\nAsk me anything — arrival details, what's in your unit, or the best spots nearby.`);
+      document.getElementById('chips').style.display = '';
+      return;
+    }
+    if (d.needsProperty && Array.isArray(d.options) && d.options.length) {
+      const box = document.getElementById('propertyOptions');
+      box.innerHTML = '<div class="hint" style="margin-bottom:2px">We found more than one booking — which property is yours?</div>';
+      for (const o of d.options) {
+        const b = document.createElement('button'); b.className = 'option-btn';
+        b.textContent = o.propertyName || `Property ${o.propertyId}`;
+        b.onclick = () => { pendingPropertyId = o.propertyId; box.className = 'options'; submitVerify(); };
+        box.appendChild(b);
+      }
+      box.className = 'options show';
+      return;
+    }
+    showErr(d.message || d.error || `We couldn't match those details. Double-check the spelling, or reach the team at ${TEAM_PHONE}.`);
+  } catch (e) {
+    showErr(`We couldn't reach the verification service. Please try again in a moment, or call ${TEAM_PHONE}.`);
+  } finally {
+    btn.disabled = false; btn.textContent = 'Verify';
+  }
+}
+document.getElementById('lastNameInput').addEventListener('keydown', e => { if (e.key === 'Enter') submitVerify(); });
+document.getElementById('bookingInput').addEventListener('keydown', e => { if (e.key === 'Enter') submitVerify(); });
+
+// ---------- boot ----------
+(function boot() {
+  const params = new URLSearchParams(location.search);
+  const b = (params.get('b') || params.get('booking') || '').trim();
+
+  // Don't leave the booking number sitting in the address bar (shares, history).
+  if (b) history.replaceState(null, '', location.pathname);
+
+  applyHeader();
+
+  if (session?.token) {
+    const name = session.guest?.firstName ? `, ${session.guest.firstName}` : '';
+    addMsg('bot', `Welcome back${name}! 🌴 I've still got your stay pulled up. What can I help you with?`);
+    return;
+  }
+
+  if (b) {
+    prefilledBooking = b;
+    const bi = document.getElementById('bookingInput');
+    bi.value = b.toUpperCase().startsWith('B') ? b.toUpperCase() : `B${b}`;
+    bi.readOnly = true;
+    document.getElementById('bookingHint').innerHTML = 'From your booking confirmation.';
+    document.getElementById('sheetSub').textContent = 'Enter the last name on the booking and we\'ll take it from there.';
+    addMsg('bot', "Hey there! Welcome to The Key to The Keys. 🌴 I'm your personal concierge for your stay.\n\nTo pull up your booking, I just need the **last name** on the reservation.");
+    openSheet();
+  } else {
+    addMsg('bot', "Hey there! Welcome to The Key to The Keys. 🌴 I'm your personal concierge — properties, local gems, arrival details, you name it.\n\nStaying with us? Tap **Verify my stay** and I'll pull up your booking.");
+  }
+})();
+</script>
+</body>
+</html>
