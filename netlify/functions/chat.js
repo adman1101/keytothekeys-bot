@@ -112,6 +112,7 @@ OUTDOOR: Balcony with outdoor furniture and views | BBQ at bottom of stairs | Re
 
 KEY COLONY BEACH CLUB (KCBC) — Building Overview
 15-unit building on Key Colony Beach island | Waterfront | Private beach | Pool | Elevator and stairs | Two gazebos (one west side, one east side) | Walking pier with two tiki huts | BBQ grills and picnic tables on pier | Dedicated parking spaces | Trash accessible via stairs or elevator
+POOL & BEACH SEATING: Lounge chairs and beach chairs are set out around both the pool and the beach area | First come, first served — no reservations | There are usually enough for everyone
 BUILDING LAYOUT:
   EAST BUILDING: 2nd floor = Units 1 to 15 | 3rd floor = Units 2 to 16 | Ground floor = Parking + storage closets (not all units have storage access — varies by unit) | Mail room (NO guest access) | Office location
   WEST BUILDING: 2nd floor = Units 17 to 31 | 3rd floor = Units 18 to 32 | Ground floor = Parking only
