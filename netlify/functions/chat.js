@@ -316,6 +316,8 @@ CHECK-IN INSTRUCTIONS AND DOOR CODES (all properties — guests ask this constan
 COFFEE (all properties):
 - Every property has a coffee maker (the type is listed per unit above), but coffee itself is NOT provided at any property — no grounds, no pods, no K-cups
 - Guests bring their own coffee, matched to the machine in their unit: drip = ground coffee and filters | Keurig = K-cup pods | Nespresso = Nespresso capsules
+- If you know the guest's unit (verified guest), answer for THAT unit's machine from the property details above — do not ask them which unit
+- If you don't know the unit, still be useful: most units have a drip maker and a Keurig (so K-cups or ground coffee both work), a few have Nespresso only (Beach Heaven Unit 28) or an espresso machine — then ask which unit so you can confirm
 - Never say or imply that coffee is stocked, complimentary, or "provided"
 
 FOR PROPERTY OWNERS:
@@ -531,7 +533,13 @@ exports.handler = async (event) => {
     }
 
     const guest = await resolveGuest(token);
-    const system = `${SYSTEM_PROMPT}\n\n${GUEST_RULES}\n\n${guest.block}`;
+    // The website widget (no token) can't display line breaks or bullets, so
+    // the FORMATTING block above would come out as one run-on line. Ask for
+    // flowing prose there; the concierge page renders the formatted version.
+    const channelNote = token
+      ? ''
+      : '\n\nCHANNEL NOTE: This reply is shown in a widget that cannot display line breaks, bullet points, or bold. Write in flowing sentences — no lists, no markdown. Separate multiple items with commas or "and", and keep it to a short paragraph.';
+    const system = `${SYSTEM_PROMPT}\n\n${GUEST_RULES}\n\n${guest.block}${channelNote}`;
 
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
