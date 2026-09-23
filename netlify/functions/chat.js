@@ -429,6 +429,19 @@ function formatGuestContext(ctx, propertyName) {
 }
 
 /**
+ * Turns light markdown into plain text for widgets that don't render it:
+ * removes **bold** / __bold__ markers, turns "- item" / "* item" list lines
+ * into "• item", and drops "#" heading markers. Everything else is untouched.
+ */
+function toPlainText(text) {
+  return String(text ?? '')
+    .replace(/\*\*(.+?)\*\*/g, '$1')
+    .replace(/__(.+?)__/g, '$1')
+    .replace(/^[ \t]*[-*]\s+/gm, '• ')
+    .replace(/^[ \t]*#{1,6}\s+/gm, '');
+}
+
+/**
  * Resolves guest context for this request, if a token was sent.
  * Never throws: any failure degrades to a clear note for the model.
  * Returns { block, verified, firstName }.
@@ -525,6 +538,15 @@ exports.handler = async (event) => {
     });
 
     const data = await response.json();
+
+    // The website widget shows text as-is, so markdown markers (**bold**, - lists)
+    // would appear as literal asterisks. The concierge page (which always sends a
+    // token) renders markdown itself, so it keeps the formatting.
+    if (!token && Array.isArray(data.content)) {
+      data.content = data.content.map((block) =>
+        block?.type === 'text' ? { ...block, text: toPlainText(block.text) } : block
+      );
+    }
 
     // `guest` is a small extra the widget can use (e.g. show "Verified: Maria")
     // without changing how it reads `content`.
