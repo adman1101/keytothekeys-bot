@@ -104,12 +104,10 @@ async function extractGuestFacts({ guestMessage, assistantReply }) {
       'anthropic-version': '2023-06-01',
     },
     body: JSON.stringify({
-      // Reuses the same model chat.js already calls successfully. A cheaper/
-      // faster model would reduce cost further, but should only be swapped
-      // in once its exact model string is confirmed valid for this account —
-      // shipping a guessed model id here would silently break Step 5 on
-      // every single turn. Revisit once that's confirmed.
-      model: 'claude-sonnet-4-6',
+      // Haiku on purpose: this call is a small yes/no-plus-category judgment
+      // that runs on every verified guest turn, so the cheaper, faster model
+      // is the right fit. The guest-facing reply in chat.js uses Sonnet.
+      model: 'claude-haiku-4-5-20251001',
       max_tokens: 300,
       system: EXTRACTION_SYSTEM_PROMPT,
       messages: [{ role: 'user', content: buildUserPrompt({ guestMessage, assistantReply }) }],
