@@ -15,6 +15,8 @@
 const { verifyGuestToken, GuestTokenError } = require('./lib/guest-token');
 const { buildGuestContext } = require('./lib/memory-context');
 const lodgify = require('./lib/lodgify-client');
+const zep = require('./lib/zep-client');
+const { extractGuestFacts } = require('./lib/fact-extraction');
 
 const SYSTEM_PROMPT = `You are Keys Concierge, the warm and knowledgeable AI assistant for The Key to The Keys — a boutique, family-owned Florida Keys vacation rental company. Speak like a friendly local who genuinely loves island life.
 
@@ -457,11 +459,18 @@ function toPlainText(text) {
 /**
  * Resolves guest context for this request, if a token was sent.
  * Never throws: any failure degrades to a clear note for the model.
- * Returns { block, verified, firstName }.
+ * Returns { block, verified, firstName, guestKey }.
+ *
+ * guestKey (added for Step 5) is the same identifier buildGuestContext()
+ * was already called with — the booking's email, or "phone:<digits>" when
+ * there is no email — passed straight through so the fact-write step later
+ * in the handler can call zep.writeGuestFact() for the SAME guest record
+ * the memory read came from, without re-deriving or re-verifying anything.
+ * null whenever the guest isn't verified or context resolution failed.
  */
 async function resolveGuest(token) {
   if (!token) {
-    return { block: 'GUEST STATUS: not verified. No guest context is available for this conversation.', verified: false, firstName: null };
+    return { block: 'GUEST STATUS: not verified. No guest context is available for this conversation.', verified: false, firstName: null, guestKey: null };
   }
 
   let payload;
@@ -470,13 +479,14 @@ async function resolveGuest(token) {
   } catch (err) {
     if (err instanceof GuestTokenError && err.code === 'config') {
       console.error('[chat] GUEST_TOKEN_SECRET problem:', err.message);
-      return { block: 'GUEST STATUS: verification is temporarily unavailable. Answer generally; do not claim to know their booking.', verified: false, firstName: null };
+      return { block: 'GUEST STATUS: verification is temporarily unavailable. Answer generally; do not claim to know their booking.', verified: false, firstName: null, guestKey: null };
     }
     console.warn('[chat] rejected guest token:', err.code, err.message);
     return {
       block: 'GUEST STATUS: not verified — their verification link is invalid or has expired. If they ask about their stay, warmly invite them to tap "Verify my stay" again.',
       verified: false,
       firstName: null,
+      guestKey: null,
     };
   }
 
@@ -491,6 +501,7 @@ async function resolveGuest(token) {
       block: formatGuestContext(ctx, propertyName),
       verified: true,
       firstName: firstNameOf(ctx.liveBooking?.guest),
+      guestKey: payload.guestKey,
     };
   } catch (err) {
     console.error('[chat] buildGuestContext failed:', err);
@@ -498,7 +509,71 @@ async function resolveGuest(token) {
       block: 'GUEST STATUS: verified, but their booking and memory details could not be loaded right now (temporary data source issue). Answer generally, do not guess at their booking, and offer the team number if they need something specific about their stay.',
       verified: true,
       firstName: null,
+      // No guestKey here even though payload.guestKey technically exists —
+      // buildGuestContext() itself failed, so we don't know this request's
+      // memory read actually succeeded. Skip the Step 5 write for this turn
+      // rather than write blind against a context we couldn't confirm.
+      guestKey: null,
     };
+  }
+}
+
+/**
+ * Pulls the plain text out of a conversation message whose `content` can be
+ * either a string (simple client) or an array of content blocks (full
+ * Anthropic message shape). Joins multiple text blocks with a space;
+ * ignores non-text blocks (e.g. images) since extraction only reasons over
+ * text.
+ */
+function textContentOf(content) {
+  if (typeof content === 'string') return content;
+  if (Array.isArray(content)) {
+    return content
+      .filter((block) => block?.type === 'text' && typeof block.text === 'string')
+      .map((block) => block.text)
+      .join(' ')
+      .trim();
+  }
+  return '';
+}
+
+/**
+ * Step 5 — after a verified guest's turn, asks extractGuestFacts() whether
+ * anything from this exchange is worth remembering, then writes each fact
+ * to Zep one at a time (never Promise.all — see zep-client.js's module
+ * header on why a single blocked/failed fact must not take the others
+ * down with it).
+ *
+ * Deliberately swallows every failure here (extraction call, individual
+ * writes) behind a warning log. This runs after the model's reply to the
+ * guest has already been generated; nothing in this function may ever
+ * throw back into the request handler and turn a successful guest reply
+ * into a 500.
+ */
+async function saveFactsFromTurn({ guestKey, firstName, guestMessage, assistantReply }) {
+  if (!guestKey || !guestMessage || !assistantReply) return;
+
+  let facts;
+  try {
+    facts = await extractGuestFacts({ guestMessage, assistantReply });
+  } catch (err) {
+    console.warn('[chat] fact extraction call failed, skipping Step 5 write for this turn:', err.message);
+    return;
+  }
+
+  for (const fact of facts) {
+    try {
+      await zep.writeGuestFact({
+        email: guestKey,
+        firstName,
+        factType: fact.factType,
+        fact: { text: fact.text },
+      });
+    } catch (err) {
+      // One blocked/failed fact (e.g. RedactionBlockedError, a transient
+      // Zep error) must not stop the rest of this turn's facts from saving.
+      console.warn('[chat] writeGuestFact failed for one extracted fact:', err.name, err.message);
+    }
   }
 }
 
@@ -557,6 +632,34 @@ exports.handler = async (event) => {
     });
 
     const data = await response.json();
+
+    // STEP 5 (Zep write path): fire after the reply is generated, before
+    // returning to the guest. Only for a verified guest whose context
+    // resolved cleanly this turn (guest.guestKey is null otherwise — see
+    // resolveGuest()). Awaited rather than fire-and-forget: a Netlify
+    // function stops running the moment it returns, so anything not
+    // awaited here would have no guarantee of completing at all. Wrapped
+    // so nothing from this step can turn a good reply into a 500.
+    if (guest.verified && guest.guestKey) {
+      try {
+        const lastGuestMessage = textContentOf(messages[messages.length - 1]?.content);
+        const assistantReplyText = Array.isArray(data.content)
+          ? data.content
+              .filter((block) => block?.type === 'text' && typeof block.text === 'string')
+              .map((block) => block.text)
+              .join(' ')
+              .trim()
+          : '';
+        await saveFactsFromTurn({
+          guestKey: guest.guestKey,
+          firstName: guest.firstName,
+          guestMessage: lastGuestMessage,
+          assistantReply: assistantReplyText,
+        });
+      } catch (err) {
+        console.warn('[chat] Step 5 fact-save step failed unexpectedly:', err.message);
+      }
+    }
 
     // The website widget shows text as-is, so markdown markers (**bold**, - lists)
     // would appear as literal asterisks. The concierge page (which always sends a
