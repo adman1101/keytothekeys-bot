@@ -371,6 +371,7 @@ Contact team for anything not listed here
 CARSON HOME — 644 26th Street Ocean, Marathon, FL 33050
 Canal-front house | About 1,290 sq ft | 2 bedrooms (queen bed in each) | 2 bathrooms | Sleeps 4 | Hot tub | Terrace
 CHECK-IN: 4:00 PM EST
+ACCESS: Smart lock with a unique code created for each guest — Airbnb guests receive it through Airbnb. Never give out a code yourself; if a guest has not received it, have them contact the team.
 PARKING: Room for multiple cars plus a boat trailer up to about 25–26 ft long
 TRASH: Garbage Monday and Friday | Recycling Friday (early AM)
 WIFI: Network "fish480" | Password: Bigfish480
