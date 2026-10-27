@@ -363,11 +363,13 @@ MINTY MANATEE — 89 Ocean Shores Drive, Key Largo, FL 33037
 Canal-front house | 2 bedrooms | 2 bathrooms | Sleeps 4 | Waterfront views
 ACCESS: Lockbox — code is sent on check-in day, never give it out yourself
 PARKING: Plenty of space for multiple cars | RV parking available | Room for boat trailers
+TRASH: Garbage Monday and Thursday | Recycling Saturday
 More details coming soon — contact team for anything not listed here
 
 CARSON HOME — 644 26th Street Ocean, Marathon, FL 33050
 Canal-front house | About 1,290 sq ft | 2 bedrooms (queen bed in each) | 2 bathrooms | Sleeps 4 | Hot tub | Terrace
 PARKING: Room for multiple cars plus a boat trailer up to about 25–26 ft long
+TRASH: Garbage Monday and Friday | Recycling Friday (early AM)
 BOATING: Dockage | 2 kayaks with life jackets
 More details coming soon — contact team for anything not listed here
 
