@@ -394,6 +394,11 @@ BOOKING:
 - Minimum stays and pricing vary by property and season
 - For availability and pricing: thekeytothekeys.com | ((786) 551-4855 | info@thekeytothekeys.com
 
+CHECK-OUT TIMES (confirmed by the team):
+- 11:00 AM: The Lazy Turtle Inn, Scube Shack, Purple Pelican, Manatee Hideout
+- 10:00 AM: every other property
+- For late check-out requests, the team decides — have the guest contact (786) 551-4855 or info@thekeytothekeys.com
+
 CHECK-IN INSTRUCTIONS AND DOOR CODES (all properties — guests ask this constantly):
 - Guests receive an automated message with check-in instructions and the door code through the booking platform they booked on (Airbnb, Vrbo, or the direct-booking messages) on the DAY OF CHECK-IN at 8:00 AM
 - It arrives in the booking platform's messages, not by separate email — tell guests to check the app or site they booked through
