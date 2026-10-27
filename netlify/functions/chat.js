@@ -169,14 +169,6 @@ MASTER BEDROOM: King bed | Full bathroom WITH TUB
 LIVING: Smart TV in living room | TV in bedroom | Ceiling fans | Regular drip coffee maker | UNIQUE FEATURE: Air fryer — only unit at KCBC with one! | Fully equipped kitchen | Washer and dryer | Iron and ironing board | Extra pillows and quilts | Beach towels provided
 BALCONY: Pool view | House rules and unit information posted
 
-UNIT 28 — "Beach Heaven" | West Building, 3rd Floor
-ACCESS: Smart lock — unique code sent via booking platform | If door jams: push door IN while entering code | Light switches on RIGHT upon entry
-BEDROOM 1: Two queen beds | Bathroom WITH TUB | Ceiling fan | TV
-MASTER BEDROOM: King bed | Smart TV | Large closet | Massive bathroom with shower AND double sinks | Owner's closet — NO guest access
-LIVING: Smart TV | Workspace/desk station | Ceiling fans | UNIQUE: Espresso/Nespresso machine only — NO regular drip coffee available | Fridge with beverages | UNIQUE: Real baby crib available | Microwave (backup microwave in laundry room if main one stops working) | Board games under living room area | Washer and dryer | Beach and extra towels | Trash next to kitchen island
-BREAKER PANEL: Behind STARFISH picture frame near thermostat in living room
-BALCONY: Outdoor furniture + two loungers
-
 SEAGLASS — Unit 24 at KCBC
 EXCLUSIVE CABANA CLUB ACCESS — only unit in the building with this membership perk!
 Full property walkthrough coming soon — contact team for details
@@ -309,8 +301,6 @@ SUPPLIES: Clean towels plus a starter kit of paper towels, toilet paper and hygi
 TRASH: In front of the building to the right, behind a white wall next to the street
 WIFI: Network "Unit 2" — password is in the check-in-day message (team can resend)
 
-BELLA BLUE — Contact team for full details
-
 ===========================
 MORE KEY COLONY BEACH HOMES (standalone houses, not in the KCBC condo building)
 ===========================
@@ -394,6 +384,8 @@ BOOKING:
 - Minimum stays and pricing vary by property and season
 - For availability and pricing: thekeytothekeys.com | ((786) 551-4855 | info@thekeytothekeys.com
 
+NO LONGER MANAGED BY THE KEY TO THE KEYS: Beach Heaven (Unit 28) and Bella Blue. If a guest asks about either, say politely that it is no longer one of our rentals and offer to help them find a similar property from our current list.
+
 CHECK-OUT TIMES (confirmed by the team):
 - 11:00 AM: The Lazy Turtle Inn, Scube Shack, Purple Pelican, Manatee Hideout
 - 10:00 AM: every other property
@@ -409,7 +401,7 @@ COFFEE (all properties):
 - Every property has a coffee maker (the type is listed per unit above), but coffee itself is NOT provided at any property — no grounds, no pods, no K-cups
 - Guests bring their own coffee, matched to the machine in their unit: drip = ground coffee and filters | Keurig = K-cup pods | Nespresso = Nespresso capsules
 - If you know the guest's unit (verified guest), answer for THAT unit's machine from the property details above — do not ask them which unit
-- If you don't know the unit, still be useful: most units have a drip maker and a Keurig (so K-cups or ground coffee both work), a few have Nespresso only (Beach Heaven Unit 28) or an espresso machine — then ask which unit so you can confirm
+- If you don't know the unit, still be useful: most units have a drip maker and a Keurig (so K-cups or ground coffee both work), a few have an espresso machine only — then ask which unit so you can confirm
 - Never say or imply that coffee is stocked, complimentary, or "provided"
 
 FOR PROPERTY OWNERS:
