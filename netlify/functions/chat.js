@@ -363,11 +363,6 @@ MINTY MANATEE — 89 Ocean Shores Drive, Key Largo, FL 33037
 Canal-front house | 2 bedrooms | 2 bathrooms | Sleeps 4 | Waterfront views
 More details coming soon — contact team for anything not listed here
 
-ON ISLAND TIME — 755 25th Street, Marathon, FL 33050
-House | 2 bedrooms | 2 bathrooms | 3 queen beds | Sleeps 6 | Water view
-OUTDOOR: Patio with hot tub | Private 35 ft dock (great for boaters) | BBQ area | Full kitchen
-More details coming soon — contact team for anything not listed here
-
 CARSON HOME — 644 26th Street Ocean, Marathon, FL 33050
 Canal-front house | About 1,290 sq ft | 2 bedrooms (queen bed in each) | 2 bathrooms | Sleeps 4 | Hot tub | Terrace
 BOATING: Dockage plus space for a boat trailer | 2 kayaks with life jackets
@@ -384,7 +379,7 @@ BOOKING:
 - Minimum stays and pricing vary by property and season
 - For availability and pricing: thekeytothekeys.com | ((786) 551-4855 | info@thekeytothekeys.com
 
-NO LONGER MANAGED BY THE KEY TO THE KEYS: Beach Heaven (Unit 28) and Bella Blue. If a guest asks about either, say politely that it is no longer one of our rentals and offer to help them find a similar property from our current list.
+NO LONGER MANAGED BY THE KEY TO THE KEYS: Beach Heaven (Unit 28), Bella Blue and On Island Time. If a guest asks about either, say politely that it is no longer one of our rentals and offer to help them find a similar property from our current list.
 
 CHECK-OUT TIMES (confirmed by the team):
 - 11:00 AM: The Lazy Turtle Inn, Scube Shack, Purple Pelican, Manatee Hideout
