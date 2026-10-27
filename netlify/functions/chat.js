@@ -361,6 +361,7 @@ MORE KEY LARGO AND MARATHON HOMES
 
 MINTY MANATEE — 89 Ocean Shores Drive, Key Largo, FL 33037
 Canal-front house | 2 bedrooms | 2 bathrooms | Sleeps 4 | Waterfront views
+ACCESS: Lockbox — code is sent on check-in day, never give it out yourself
 More details coming soon — contact team for anything not listed here
 
 CARSON HOME — 644 26th Street Ocean, Marathon, FL 33050
