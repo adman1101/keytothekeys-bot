@@ -169,7 +169,14 @@ MASTER BEDROOM: King bed | Full bathroom WITH TUB
 LIVING: Smart TV in living room | TV in bedroom | Ceiling fans | Regular drip coffee maker | UNIQUE FEATURE: Air fryer — only unit at KCBC with one! | Fully equipped kitchen | Washer and dryer | Iron and ironing board | Extra pillows and quilts | Beach towels provided
 BALCONY: Pool view | House rules and unit information posted
 
-SEAGLASS — Unit 24 at KCBC
+UNIT 28 — "Beach Heaven" | West Building, 3rd Floor
+STATUS: Not currently taking bookings — if asked about booking it, suggest a similar available property and the team can confirm when it reopens
+ACCESS: Smart lock — unique code sent via booking platform | If door jams: push door IN while entering code | Light switches on RIGHT upon entry
+BEDROOM 1: Two queen beds | Bathroom WITH TUB | Ceiling fan | TV
+MASTER BEDROOM: King bed | Smart TV | Large closet | Massive bathroom with shower AND double sinks | Owner's closet — NO guest access
+LIVING: Smart TV | Workspace/desk station | Ceiling fans | UNIQUE: Espresso/Nespresso machine only — NO regular drip coffee available | Fridge with beverages | UNIQUE: Real baby crib available | Microwave (backup microwave in laundry room if main one stops working) | Board games under living room area | Washer and dryer | Beach and extra towels | Trash next to kitchen island
+BREAKER PANEL: Behind STARFISH picture frame near thermostat in living room
+BALCONY: Outdoor furniture + two loungersSEAGLASS — Unit 24 at KCBC
 EXCLUSIVE CABANA CLUB ACCESS — only unit in the building with this membership perk!
 Full property walkthrough coming soon — contact team for details
 CABANA CLUB COMPLETE INFO:
@@ -301,6 +308,8 @@ SUPPLIES: Clean towels plus a starter kit of paper towels, toilet paper and hygi
 TRASH: In front of the building to the right, behind a white wall next to the street
 WIFI: Network "Unit 2" | Password: 4844004243
 
+BELLA BLUE — Contact team for full details
+
 ===========================
 MORE KEY COLONY BEACH HOMES (standalone houses, not in the KCBC condo building)
 ===========================
@@ -389,12 +398,12 @@ BOOKING:
 - Minimum stays and pricing vary by property and season
 - For availability and pricing: thekeytothekeys.com | ((786) 551-4855 | info@thekeytothekeys.com
 
-NO LONGER MANAGED BY THE KEY TO THE KEYS: Beach Heaven (Unit 28), Bella Blue and On Island Time. If a guest asks about either, say politely that it is no longer one of our rentals and offer to help them find a similar property from our current list.
+NO LONGER MANAGED BY THE KEY TO THE KEYS: On Island Time. If a guest asks about it, say politely that it is no longer one of our rentals and offer to help them find a similar property from our current list.
 
 CHECK-OUT TIMES (confirmed by the team):
 - 11:00 AM: The Lazy Turtle Inn, Scube Shack, Purple Pelican, Manatee Hideout
 - 10:00 AM: every other property
-- LATE CHECK-OUT: allowed. The first extra hour is free. Staying later, up to 4:00 PM at the latest, costs 40% of the nightly rate. Guests must request it from the team at (786) 551-4855 or info@thekeytothekeys.com so it can be confirmed — never promise it is approved yourself.
+- LATE CHECK-OUT: possible depending on availability, and always needs team approval. The first extra hour is free. Staying later, up to 4:00 PM at the latest, costs 40% of the nightly rate. Guests must request it from the team at (786) 551-4855 or info@thekeytothekeys.com so it can be confirmed — never promise it is approved yourself.
 
 CHECK-IN INSTRUCTIONS AND DOOR CODES (all properties — guests ask this constantly):
 - Guests receive an automated message with check-in instructions and the door code through the booking platform they booked on (Airbnb, Vrbo, or the direct-booking messages) on the DAY OF CHECK-IN at 8:00 AM
