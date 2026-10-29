@@ -387,6 +387,8 @@ ARRIVAL: Turn left on Fishermans Trail — the light blue house is on the left |
 ACCESS: Lockbox — code is sent on check-in day, never give it out yourself
 PARKING: Plenty of space for multiple cars | RV parking available | Room for boat trailers
 TRASH: Garbage Monday and Thursday (early AM) | Recycling Saturday (early AM) | Landscape debris Wednesday (AM)
+THERMOSTAT: On the wall just before the living room bathroom
+BREAKER PANEL: On the wall in the laundry room
 WIFI: Network "Klargo2055" | Password: Tulip2red
 Contact team for anything not listed here
 
