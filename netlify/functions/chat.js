@@ -371,10 +371,11 @@ MORE KEY LARGO AND MARATHON HOMES
 MINTY MANATEE — 89 Ocean Shores Drive, Key Largo, FL 33037
 Canal-front house | 2 bedrooms | 2 bathrooms | Sleeps 4 | Waterfront views
 CHECK-IN: 4:00 PM EST
+ARRIVAL: Turn left on Fishermans Trail — the light blue house is on the left | Park under the house or anywhere in front | Lockbox is on the rail of the white stairs and holds the key | Go up the stairs, open the screen door — the key opens the double glass door
 ACCESS: Lockbox — code is sent on check-in day, never give it out yourself
 PARKING: Plenty of space for multiple cars | RV parking available | Room for boat trailers
-TRASH: Garbage Monday and Thursday | Recycling Saturday
-WIFI: Network "klargo2055" | Password: Tulip2red
+TRASH: Garbage Monday and Thursday (early AM) | Recycling Saturday (early AM) | Landscape debris Wednesday (AM)
+WIFI: Network "Klargo2055" | Password: Tulip2red
 Contact team for anything not listed here
 
 CARSON HOME — 644 26th Street Ocean, Marathon, FL 33050
