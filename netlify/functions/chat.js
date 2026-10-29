@@ -98,6 +98,8 @@ OUTDOOR/PATIO: Hot tub — remove cover before use | Bar with TV | Dart game | F
 PET FRIENDLY: Fully fenced backyard | Wooden gate | Pets cannot escape | Back gate allows exit from backyard
 
 MAY THE SURF BE WITH YOU — Unit 17 at KCBC
+THERMOSTAT: On the left-hand side, just before you enter the guest bedroom
+BREAKER PANEL: Behind a mirror next to the thermostat
 King + queen + bunks | Perfect for families | Full details coming soon — contact team
 
 ===========================
