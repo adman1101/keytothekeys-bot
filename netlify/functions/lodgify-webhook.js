@@ -41,24 +41,34 @@ exports.handler = async (event) => {
   }
 
   let payload;
-  try { payload = JSON.parse(raw); } catch { return ok('ignored: not json'); }
-  if (payload.action !== 'guest_message_received') return ok('ignored: ' + payload.action);
+  try { payload = JSON.parse(raw); } catch { payload = { unparsed: raw }; }
 
-  const record = {
-    received_at: new Date().toISOString(),
-    creation_time: payload.creation_time || null,
-    inbox_uid: payload.inbox_uid || null, // booking/enquiry id, e.g. "B12345"
-    thread_uid: payload.thread_uid || null,
-    message_id: payload.message_id || null,
-    guest_name: payload.guest_name || null,
-    subject: payload.subject || null,
-    message: payload.message || '',
-    has_attachments: Boolean(payload.has_attachments),
-  };
-
+  // Lodgify may send a single object, an array of events, or wrap the event.
+  const events = Array.isArray(payload) ? payload : [payload];
   const log = getStore('guest-messages');
-  const key = `${record.received_at}_${record.message_id || crypto.randomUUID()}`;
-  await log.setJSON(key, record);
-  console.log(JSON.stringify({ event: 'guest_message_logged', inbox_uid: record.inbox_uid, chars: record.message.length }));
+
+  for (const ev0 of events) {
+    const ev = (ev0 && (ev0.payload || ev0.data)) && typeof (ev0.payload || ev0.data) === 'object'
+      ? { ...(ev0.payload || ev0.data), action: ev0.action || (ev0.payload || ev0.data).action }
+      : (ev0 || {});
+    const action = ev.action || ev.event || ev.type || null;
+    console.log(JSON.stringify({ event: 'lodgify_webhook_received', action, keys: Object.keys(ev0 || {}).slice(0, 20) }));
+
+    const record = {
+      received_at: new Date().toISOString(),
+      action,
+      creation_time: ev.creation_time || ev.created_at || null,
+      inbox_uid: ev.inbox_uid || ev.booking_id || null, // booking/enquiry id, e.g. "B12345"
+      thread_uid: ev.thread_uid || null,
+      message_id: ev.message_id || ev.id || null,
+      guest_name: ev.guest_name || null,
+      subject: ev.subject || null,
+      message: ev.message || ev.text || '',
+      has_attachments: Boolean(ev.has_attachments),
+      raw: ev0, // keep the full signed payload while we learn Lodgify's format
+    };
+    const key = `${record.received_at}_${record.message_id || crypto.randomUUID()}`;
+    await log.setJSON(key, record);
+  }
   return ok();
 };
