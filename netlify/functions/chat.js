@@ -257,6 +257,8 @@ BALCONY: Outdoor dining table with 6 chairs | Great for meals outside
 BATHROOM: Shower only — no tub | Hair dryer provided
 
 SEAGLASS — Unit 24 | KCBC | 501 E Ocean Dr, Unit 24, Key Colony Beach, FL 33051
+THERMOSTAT: To the left of the guest bedroom
+BREAKER PANEL: Behind the picture frame above the minibar in the living room
 ⭐ EXCLUSIVE Cabana Club Access — only unit in the building with this perk!
 ENTRY: Light switches on RIGHT upon entry | Refrigerator on LEFT — house rules and floor plan posted
 KITCHEN/DINING: Dining table with 4 seats | Kitchen island with 3 stools | Dishwasher | Washing machine | Fire extinguisher | Regular drip coffee maker | Keurig coffee maker | Trash next to kitchen island
