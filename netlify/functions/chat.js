@@ -167,6 +167,8 @@ BALCONY: Pool view
 WATER HEATER: Press reset button if hot water issue
 
 UNIT 25 — "Beach Club Tidal Wave" | West Building, 2nd Floor
+THERMOSTAT: On the right side, just before you enter the guest bedroom
+BREAKER PANEL: Behind a picture frame on the same living room wall, next to the thermostat
 ACCESS: Smart lock — code provided upon arrival
 BEDROOM 1: Two twin beds | Full bathroom (shower only)
 MASTER BEDROOM: King bed | Full bathroom WITH TUB
