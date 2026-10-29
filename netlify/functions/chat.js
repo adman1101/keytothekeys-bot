@@ -372,6 +372,8 @@ Mobile home | 1 bedroom | 1 bathroom | Sofa bed | Sleeps up to 5 | Beach and poo
 ARRIVAL: Park in front of the property, go through the walkway — the door is at the end
 ACCESS: Keypad door code is in the check-in-day message, never give it out yourself
 SUPPLIES: Clean towels plus a starter kit of paper towels, toilet paper and hygiene items | Board games in the living room
+BREAKER PANEL: On the left side, just before you enter the bathroom
+AIR CONDITIONING: No wall thermostat — mini-split AC units, controlled with their remotes
 WIFI: Network "Scubeshack" | Password: scubed00
 
 ===========================
