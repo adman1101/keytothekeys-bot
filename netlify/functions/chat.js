@@ -338,6 +338,8 @@ PARKING: On the driveway
 ACCESS: Lockbox hangs from the door downstairs — code is in the check-in-day message, never give it out yourself | Use the stairs on the right to reach the main entrance on the second floor
 SUPPLIES: Clean towels plus a starter kit of paper towels, toilet paper and hygiene items | Board games in the living room
 TRASH: Garbage Tuesday and Saturday (early AM) | Recycling Tuesday (early AM) | Landscape debris Wednesday (AM)
+BREAKER PANEL: At the end of the hallway that leads to all the rooms, behind a picture frame
+THERMOSTAT: On the left, just before you enter the master bedroom
 WIFI: Network "Catching Rays - Guest" | Password: Fishing4Lobster
 
 ===========================
