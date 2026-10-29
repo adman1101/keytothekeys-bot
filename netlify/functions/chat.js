@@ -398,6 +398,8 @@ CHECK-IN: 4:00 PM EST
 ACCESS: Smart lock with a unique code created for each guest — Airbnb guests receive it through Airbnb; for Vrbo and direct bookings the team creates the code manually and sends it. Never give out a code yourself; if a guest has not received it, have them contact the team.
 PARKING: Room for multiple cars plus a boat trailer up to about 25–26 ft long
 TRASH: Garbage Monday and Friday | Recycling Friday (early AM)
+THERMOSTAT: On the wall next to the fridge
+BREAKER PANEL: Inside the master bedroom closet
 WIFI: Network "fish480" | Password: Bigfish480
 BOATING: Dockage | 2 kayaks with life jackets
 More details coming soon — contact team for anything not listed here
