@@ -75,6 +75,8 @@ MASTER BEDROOM: King bed | TV + HDMI | AC remote | Owner's closet — NO guest a
 THIRD FLOOR ROOFTOP: KEEP GLASS DOOR CLOSED AT ALL TIMES | Lounge mattress for sunbathing | Green area | Panoramic views of the Florida Keys
 
 SANDY FEET — 325 Calusa Street, Key Largo, FL 33037 | Calusa Campground Lot 320
+THERMOSTAT: On the wall in front of the master bedroom
+BREAKER PANEL: Next to the thermostat, behind a picture frame
 2 bedrooms (king + queen) | Sleeper sofa | Sleeps 5 | 2 bathrooms | Waterfront | Pool access (campground shared pool)
 Full details coming soon — contact team for more information
 
