@@ -363,6 +363,8 @@ OUTDOOR: Chaise lounge area facing the water (great for sunsets) | Stainless ste
 ACCESS: Black lockbox on the front porch railing, to the left of the front door, holds the door key — code is in the check-in-day message, never give it out yourself
 SUPPLIES: Clean towels plus a starter kit of paper towels, toilet paper and hygiene items | Board games in the living room cabinets above the reclining chairs
 CHECK-OUT: Put used towels in the shower | Trash bags near the road at the end of the site | Turn off all lights | Make sure the propane is closed | Set AC to 75°F | Close all doors and windows and put the key back in the lockbox | Return the Gate Card to the campground office
+BREAKER PANEL: Inside the bedroom next to the bathroom — as you walk in, look for a cabinet; push the cabinet door in to open it, the panel is inside
+THERMOSTAT: On the right, just before you enter the bathroom
 WIFI: Network "The Lazy Turtle Inn" | Password: Keyslife66
 
 SCUBE SHACK — Lot 151, Key Largo Kampground (sometimes spelled "Scuba Shack")
