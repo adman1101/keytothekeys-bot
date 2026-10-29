@@ -66,7 +66,8 @@ TRASH: Monday and Thursday | RECYCLING: Saturday
 CASA COCO — Lot 503, Calusa Campground
 Multi-level private home
 ACCESS: Lockbox — smart lock code provided upon arrival
-OUTDOOR: Pool | Outdoor shower | Bar with TV (remote always on bar) | Outdoor kitchen with BBQ | Propane tank (extra tank stored in closet) | Hammock | Seating areas
+POOL: Community pool (shared, not a private pool)
+OUTDOOR: Outdoor shower | Bar with TV (remote always on bar) | Outdoor kitchen with BBQ | Propane tank (extra tank stored in closet) | Hammock | Seating areas
 DOWNSTAIRS BEDROOM: Queen bed | Full bathroom with shower | Mini split AC (remote in room) | TV (remote in room) | IMPORTANT: Does NOT connect inside to main house — must go outside to access main house
 MAIN FLOOR: Sofa bed (rarely used) | Full kitchen — Keurig + drip coffee maker, full fridge | Small workspace area | House rules posted | Hallway bathroom | Washer and dryer (laundry pods provided) | No guest storage | Iron available | First aid kit | Thermostat — set to 74°F when vacant
 SECOND FLOOR: Queen bedroom with TV + remote | Closet | Hallway bathroom
