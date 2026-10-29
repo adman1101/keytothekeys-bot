@@ -307,6 +307,8 @@ PENTHOUSE — Unit 2 | East Building, 3rd Floor, KCBC | 501 E Ocean Dr, Unit 2 (
 ARRIVAL: After turning left onto Sadowski Causeway, the light yellow building on the right is the first building | Use the underground parking and park in the spot marked with unit number 2, in front of the storage room with the white door | Elevator is to the left — press 3rd floor | Step out, take the first left — Unit 2 is all the way at the end
 ACCESS: Door code is explained in the check-in-day message — never give it out or describe how it is made
 SUPPLIES: Clean towels plus a starter kit of paper towels, toilet paper and hygiene items | Board games in the living room
+BREAKER PANEL: On the left-hand side, behind the picture frame next to the TV table
+THERMOSTAT: On the wall right next to the breaker panel frame
 TRASH: In front of the building to the right, behind a white wall next to the street
 WIFI: Network "Unit 2" | Password: 4844004243
 
