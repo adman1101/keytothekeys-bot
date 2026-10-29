@@ -326,6 +326,8 @@ PARKING: In front of the garage
 ACCESS: Lockbox next to the entrance door — code is in the check-in-day message, never give it out yourself
 SUPPLIES: Clean towels plus a starter kit of paper towels, toilet paper and hygiene items | Board games in the living room
 TRASH: Garbage Tuesday and Saturday (early AM) | Recycling Tuesday (early AM) | Landscape debris Wednesday (AM)
+BREAKER PANEL: On the wall of the main hallway, just before the master bedroom
+THERMOSTAT: At the entrance to that same main hallway
 WIFI: Network "13th Street Vibes" | Password: PDC33165
 
 CATCHING RAYS — 620 11th Street, Key Colony Beach, FL 33051
