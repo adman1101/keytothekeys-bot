@@ -297,6 +297,8 @@ CHECK-IN: 4:00 PM EST
 ARRIVAL: After turning left onto Sadowski Causeway, the light yellow building on the right is the first building | Use the underground parking and park in the spot marked with unit number 7, in front of the storage room with the white door | Elevator is to the left — press 2nd floor | Step out, take the first left — Unit 7 is the first door
 ACCESS: Door code is sent on check-in day by text, email or the booking app — never give it out yourself
 SUPPLIES: Clean towels plus a starter kit of paper towels, toilet paper and hygiene items | Board games in the living room
+THERMOSTAT: Next to the guest bedroom — as soon as you walk in, on the right
+BREAKER PANEL: Behind the picture frame on the same wall as the thermostat
 TRASH: Bins are right outside the building behind a white wall
 WIFI: Network "Unit 7 Guest" | Password: KeyColony#7
 
