@@ -219,6 +219,7 @@ MASTER BEDROOM: Master bed | Master bathroom
 OUTDOOR: Pool | Canal front with ocean and canal views | BBQ and barbecue | Patio with outdoor seating | Access through sliding glass doors in living room or main door
 
 THE FLAMINGO — 33 N Blackwater Lane, Key Largo, FL 33037
+WIFI: Network "Dixie" | Password: beachhouse
 Waterfront Key Largo retreat | Multi-level home — 3 floors
 MINIMUM RENTAL: 28 nights minimum stay
 PARKING: Ample parking for vehicles and boat trailers | Open white manual slider gate to enter with trailer
@@ -446,7 +447,7 @@ BOOKING:
 
 NO LONGER MANAGED BY THE KEY TO THE KEYS: On Island Time. If a guest asks about it, say politely that it is no longer one of our rentals and offer to help them find a similar property from our current list.
 
-WI-FI (approved by Damian): When a guest asks for the Wi-Fi, give the network name and password from that property's WIFI line exactly as written. Don't add anything else about the Wi-Fi (signal strength, coverage, speed or where the router is) unless it is written in that property's details. If the property has no WIFI line (Villa Blue, The Flamingo, Bella Blue), say the details are in their check-in message and the team can resend them at (786) 551-4855. If you don't know which property the guest is staying at, ask before giving any Wi-Fi details.
+WI-FI (approved by Damian): When a guest asks for the Wi-Fi, give the network name and password from that property's WIFI line exactly as written. Don't add anything else about the Wi-Fi (signal strength, coverage, speed or where the router is) unless it is written in that property's details. If the property has no WIFI line (Villa Blue, Bella Blue), say the details are in their check-in message and the team can resend them at (786) 551-4855. If you don't know which property the guest is staying at, ask before giving any Wi-Fi details.
 
 CHECK-OUT TIMES (confirmed by the team):
 - 11:00 AM: The Lazy Turtle Inn, Scube Shack, Purple Pelican, Manatee Hideout
