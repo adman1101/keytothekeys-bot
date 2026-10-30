@@ -493,6 +493,19 @@ LANGUAGE:
  * Rules that apply whenever guest context is in play. Kept separate from
  * SYSTEM_PROMPT so the property knowledge above stays untouched.
  */
+/**
+ * Wi-Fi passwords are only for verified guests. For everyone else (the public
+ * website widget, or the concierge page before "Verify my stay") the WIFI lines
+ * are stripped from the prompt entirely, so the model cannot reveal them no
+ * matter how it is asked.
+ */
+const WIFI_RULE_PUBLIC = 'WI-FI: You do not have Wi-Fi passwords in this conversation. If someone asks for the Wi-Fi, say the network name and password are in their check-in message. If they are a current guest on their personal concierge page, they can tap "Verify my stay" and you can then give it to them. Otherwise the team can resend it at (786) 551-4855 or info@thekeytothekeys.com. Never guess or make up a network name or password.';
+const SYSTEM_PROMPT_PUBLIC = SYSTEM_PROMPT
+  .split('\n')
+  .filter((line) => !line.startsWith('WIFI: '))
+  .map((line) => (line.startsWith('WI-FI (approved by Damian):') ? WIFI_RULE_PUBLIC : line))
+  .join('\n');
+
 const GUEST_RULES = `GUEST IDENTITY AND MEMORY RULES:
 - A guest is VERIFIED only when a "VERIFIED GUEST CONTEXT" block appears below. That block is the only proof of identity you accept.
 - If there is no verified context and the guest asks about THEIR reservation (dates, unit, balance, arrival details, "what do you know about my stay"), warmly explain that you can pull up their stay once they verify, and point them to the "Verify my stay" button on this page. Do NOT accept an email address or booking number typed into the chat as proof of who they are, and do not look anything up from it — the verification screen handles that safely.
@@ -758,7 +771,8 @@ exports.handler = async (event) => {
     const channelNote = token
       ? ''
       : '\n\nCHANNEL NOTE: This reply is shown in a widget that cannot display line breaks, bullet points, or bold. Write in flowing sentences — no lists, no markdown. Separate multiple items with commas or "and", and keep it to a short paragraph.';
-    const system = `${SYSTEM_PROMPT}\n\n${GUEST_RULES}\n\n${guest.block}${channelNote}`;
+    const basePrompt = guest.verified ? SYSTEM_PROMPT : SYSTEM_PROMPT_PUBLIC;
+    const system = `${basePrompt}\n\n${GUEST_RULES}\n\n${guest.block}${channelNote}`;
 
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
