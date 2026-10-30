@@ -342,8 +342,6 @@ THERMOSTAT: On the wall right next to the breaker panel frame
 TRASH: In front of the building to the right, behind a white wall next to the street
 WIFI: Network "Unit 2" | Password: 4844004243
 
-BELLA BLUE — Contact team for full details
-
 ===========================
 MORE KEY COLONY BEACH HOMES (standalone houses, not in the KCBC condo building)
 ===========================
@@ -447,7 +445,7 @@ BOOKING:
 
 NO LONGER MANAGED BY THE KEY TO THE KEYS: On Island Time. If a guest asks about it, say politely that it is no longer one of our rentals and offer to help them find a similar property from our current list.
 
-WI-FI (approved by Damian): When a guest asks for the Wi-Fi, give the network name and password from that property's WIFI line exactly as written. Don't add anything else about the Wi-Fi (signal strength, coverage, speed or where the router is) unless it is written in that property's details. If the property has no WIFI line (Villa Blue, Bella Blue), say the details are in their check-in message and the team can resend them at (786) 551-4855. If you don't know which property the guest is staying at, ask before giving any Wi-Fi details.
+WI-FI (approved by Damian): When a guest asks for the Wi-Fi, give the network name and password from that property's WIFI line exactly as written. Don't add anything else about the Wi-Fi (signal strength, coverage, speed or where the router is) unless it is written in that property's details. If the property has no WIFI line (Villa Blue), say the details are in their check-in message and the team can resend them at (786) 551-4855. If you don't know which property the guest is staying at, ask before giving any Wi-Fi details.
 
 CHECK-OUT TIMES (confirmed by the team):
 - 11:00 AM: The Lazy Turtle Inn, Scube Shack, Purple Pelican, Manatee Hideout
