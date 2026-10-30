@@ -44,6 +44,7 @@ CALUSA CAMPGROUND PROPERTIES
 ===========================
 
 PURPLE PELICAN TRAILER — Calusa LOT #1
+WIFI: Network "Purple-Pelican" | Password: keyslife66
 Unique trailer-style property in Calusa Campground, Key Largo
 PARKING: Common area parking available | Remove chain at unit for 1 vehicle direct access
 OUTDOOR: Two bikes | Picnic table | Outdoor shower | Hot tub with seating | BBQ with propane (always check propane — contact Adalberto via WhatsApp if replacement needed) | String lights (inside switch — check main breaker or GFCI reset if not working) | Trash and recycling area nearby
@@ -55,6 +56,7 @@ BREAKER PANEL: Above dinner table, left cabinet — all breakers must be UP. If 
 CONTACT FOR ISSUES: Adalberto (WhatsApp) — propane, electrical, lockouts — comes right away
 
 MANATEE HIDEOUT — Calusa LOT #250
+WIFI: Network "Manatee Hideout" | Password: Keyslife250
 PARKING: 2 spaces (limited)
 ACCESS: Smart lock — code provided upon arrival | Owner lockbox on property — owner use only, no guest access | Owner shed — owner use only, no guest access
 OUTDOOR: BBQ with propane | Shell BBQ on property — owner use only, do not touch
@@ -64,6 +66,7 @@ BREAKER PANEL: Master bedroom wall — enter room and turn right
 TRASH: Monday and Thursday | RECYCLING: Saturday
 
 CASA COCO — Lot 503, Calusa Campground
+WIFI: Network "Alfred" | Password: 3059628414
 Multi-level private home
 ACCESS: Lockbox — smart lock code provided upon arrival
 POOL: Community pool (shared, not a private pool)
@@ -76,6 +79,7 @@ MASTER BEDROOM: King bed | TV + HDMI | AC remote | Owner's closet — NO guest a
 THIRD FLOOR ROOFTOP: KEEP GLASS DOOR CLOSED AT ALL TIMES | Lounge mattress for sunbathing | Green area | Panoramic views of the Florida Keys
 
 SANDY FEET — 325 Calusa Street, Key Largo, FL 33037 | Calusa Campground Lot 320
+WIFI: Network "SandyFeetGuest" | Password: archiemorlote2
 THERMOSTAT: On the wall in front of the master bedroom
 BREAKER PANEL: Next to the thermostat, behind a picture frame
 2 bedrooms (king + queen) | Sleeper sofa | Sleeps 5 | 2 bathrooms | Waterfront | Pool access (campground shared pool)
@@ -86,6 +90,7 @@ MARATHON PROPERTIES
 ===========================
 
 HOTTUB HIDEAWAY — 697 46th Street Gulf, Marathon, FL 33050
+WIFI: Network "hottubhideaway" | Password: MahiMahi2014
 Just 5 minutes from Sombrero Beach! Smart lock — code provided upon arrival
 BUNK ROOM: Bottom bunk queen | Top bunk twin | Mini split AC (remote on wall below unit) | TV + storage space for books and blankets
 MASTER BEDROOM: King bed | Smart TV with remote | Mini split AC (remote below unit) | Closet (air mattress and extras inside) | Extra beach chairs and blankets
@@ -99,6 +104,7 @@ OUTDOOR/PATIO: Hot tub — remove cover before use | Bar with TV | Dart game | F
 PET FRIENDLY: Fully fenced backyard | Wooden gate | Pets cannot escape | Back gate allows exit from backyard
 
 MAY THE SURF BE WITH YOU — Unit 17 at KCBC
+WIFI: Network "May The Surf Be With You" | Password: KCBC17+!+
 THERMOSTAT: On the left-hand side, just before you enter the guest bedroom
 BREAKER PANEL: Behind a mirror next to the thermostat
 King + queen + bunks | Perfect for families | Full details coming soon — contact team
@@ -125,6 +131,7 @@ BUILDING LAYOUT:
   WEST BUILDING: 2nd floor = Units 17 to 31 | 3rd floor = Units 18 to 32 | Ground floor = Parking only
 
 UNIT 9 — "Sea La Vie" | East Building, 2nd Floor
+WIFI: Network "Tool5plot" | Password: Tool9plot
 NAVIGATION FROM ELEVATOR: Exit elevator → turn right → turn right again → first apartment (unit 9 side)
 ENTRY: Floor plan posted on LEFT as you enter | Light switches on LEFT
 COMMON AREA: Dining table (4 chairs) | Fire extinguisher under sink | Sleeping sofa (full size) | Thermostat next to Bedroom 1 door
@@ -137,6 +144,7 @@ KITCHEN: Keurig AND regular drip coffee maker — both available!
 CRITICAL RULE: Sliding glass doors — do NOT leave open more than 10 minutes or the AC will shut off for 2 to 4 hours. This is in the house rules.
 
 UNIT 10 — "Coral Sand" | East Building, 3rd Floor (even numbers on 3rd floor)
+WIFI: Network "Key Colony 10" | Password: 3858274570
 NAVIGATION: Elevator on RIGHT side of building | Storage room at base — owner use only, no guest access
 ACCESS: Smart lock — code provided upon arrival
 KITCHEN: Keurig + regular drip coffee maker | Dishwasher | Oven | Plates in cabinets
@@ -149,6 +157,7 @@ MASTER BEDROOM: King bed | TV | Small closet | Owner's closet INSIDE master clos
 MASTER BATHROOM: Shower
 
 UNIT 16 — "Finer Things" | East Building, 3rd Floor
+WIFI: Network "Key Colony 16 -Guest" | Password: KCBC1616
 ENTRY: Kitchen light switches right at entrance
 KITCHEN/DINING: Dining table with stools | Keurig + drip coffee maker | Dishwasher
 LIVING AREA: Smart TV | Workspace area | Beach and mosquito supplies available
@@ -159,6 +168,7 @@ MASTER BEDROOM: King bed | Smart TV | Small closet | Owner's closet INSIDE maste
 MASTER BATHROOM: Shower
 
 UNIT 20 — "Barefoot Paradise" | West Building, 3rd Floor
+WIFI: Network "Condokcbc100" | Password: 2GetconnecteD!
 ACCESS: Smart lock — code provided upon arrival | Light switches on LEFT upon entry
 BEDROOM 1: King bed | Full bathroom with tub
 MASTER BEDROOM: King bed | Smart TV | Closet
@@ -168,6 +178,7 @@ BALCONY: Pool view
 WATER HEATER: Press reset button if hot water issue
 
 UNIT 25 — "Beach Club Tidal Wave" | West Building, 2nd Floor
+WIFI: Network "KeyColony25" | Password: Elvis$25
 THERMOSTAT: On the right side, just before you enter the guest bedroom
 BREAKER PANEL: Behind a picture frame on the same living room wall, next to the thermostat
 ACCESS: Smart lock — code provided upon arrival
@@ -196,6 +207,7 @@ CABANA CLUB COMPLETE INFO:
 CABANA CLUB NOTIFICATION: The team emails the Cabana Club at least 1 day before guest arrival with guest names, check-in and check-out dates, and unit information. Guests do not need to do anything — the team handles this automatically.
 
 PARADISE COVE — 280 Sadowski Causeway, Key Colony Beach, FL 33051
+WIFI: Network "280 Sadowski" | Password: 280goodvibes
 Canal front property with pool and 50ft dock | Private and stunning
 ACCESS: Entry passage on RIGHT side of building | Push lock UP and pull door toward you | Main entrance on LEFT | Smart lock — code provided upon arrival | Door opens automatically when code entered — press keypad button to close
 ENTRY: Floor plan posted on RIGHT | Light switches on RIGHT | Bedroom 1 on LEFT: Queen bed, TV, closet and cabinets
@@ -222,6 +234,7 @@ BREAKER PANEL: Next to laundry area in kitchen on second floor
 LIGHTS: Outdoor lights — switches near back glass sliding doors | Kitchen lights — in kitchen area | Bedroom lights — next to each bedroom entrance
 
 BLUE PARADISE — Unit 11 | East Building, KCBC | 501 E Ocean Dr, Unit 11, Key Colony Beach
+WIFI: Network "White Family" | Password: Ziggy123
 ENTRY: Light switches on RIGHT upon entry | House rules posted on refrigerator | Fire extinguisher hanging on wall next to dining table
 KITCHEN: Keurig + regular drip coffee maker | Dishwasher | Oven | Trash next to counter | Fully equipped
 LIVING AREA: Board games and books available | Smart TVs | Ceiling fan — black remote control under TV | If fan does not respond to remote: two switches next to kitchen — one for fan, one for balcony lights | Balcony with lounge chairs and dining table
@@ -231,6 +244,7 @@ BEDROOM 1: Two full/queen beds | Bathroom with tub | Washer and dryer in same ro
 MASTER BEDROOM: King bed | Plenty of space | Portable fan | Extra linens and extra pillows | Bathroom with shower
 
 TURTLES PACE — Unit 18 | West Building, 2nd Floor | 501 E Ocean Dr, Unit 18, Key Colony Beach
+WIFI: Network "501KCB18" | Password: Gullsnest18
 2 bedrooms | 2 bathrooms
 ACCESS: Light switches on RIGHT side upon entry | Key available for downstairs storage unit | Downstairs storage has bikes, beach essentials and more — guests welcome to use everything
 HOUSE RULES: Posted on the refrigerator
@@ -240,6 +254,7 @@ MASTER BEDROOM: King bed | Private bathroom | Extra towels provided
 BREAKER PANEL: Behind the TORTOISE picture frame
 
 SANDY'S TROPICAL RETREAT — 676 Sailfish Trail, Key Largo
+WIFI: Network "Sandy" | Password: Mykids65
 Tropical paradise with huge yard and fruit trees
 ACCESS: Entry through backyard | Parking in front, side, or back | Smart lock — code provided upon arrival | Bike parking through side entry
 OUTDOOR: BBQ with seating area | Hammock | Fire pit (guests can use) | Huge yard full of tropical fruit trees including papayas | RV parking space in back | Child safety lock on security gate
@@ -250,6 +265,7 @@ UNIQUE FEATURE: Octagon shaped roof — cool architectural detail guests love!
 TOTAL: 4 beds (2 twin rooms) | 3 bathrooms
 
 KOKOMO VIEWS — Unit 5 | East Building, KCBC | 501 E Ocean Dr, Unit 5, Key Colony Beach, FL 33051
+WIFI: Network "Kokomo Views Guest" | Password: kokomotravel5 (all lowercase)
 ENTRY: Round dining table with counter/diner style seating | Floor plan and emergency exit information posted on door
 KITCHEN: Refrigerator | Dishwasher | Fire extinguisher under sink | Apartment rules posted | Thermostat nearby | Breaker panel nearby
 LIVING AREA: Smart TV | Board games available
@@ -258,6 +274,7 @@ BALCONY: Outdoor dining table with 6 chairs | Great for meals outside
 BATHROOM: Shower only — no tub | Hair dryer provided
 
 SEAGLASS — Unit 24 | KCBC | 501 E Ocean Dr, Unit 24, Key Colony Beach, FL 33051
+WIFI: Network "KeyColony24" | Password: KCBCunit24
 THERMOSTAT: To the left of the guest bedroom
 BREAKER PANEL: Behind the picture frame above the minibar in the living room
 ⭐ EXCLUSIVE Cabana Club Access — only unit in the building with this perk!
@@ -270,6 +287,7 @@ BATHROOM: Shower only — no tub
 CABANA CLUB: Walking distance from unit | Hours 10AM-7PM | Team notifies Cabana Club before every arrival — guests do not need to do anything
 
 THE TURQUOISE TURTLE — Unit 30 | West Building, 3rd Floor | KCBC | 501 E Ocean Dr, Unit 30, Key Colony Beach, FL 33051
+WIFI: Network "KCBC30" | Password: 1369087788
 ACCESS: Smart lock — code provided upon arrival | If lock gets stuck — close fully and re-enter code
 ENTRY: Property info and floor plan on refrigerator | Fire extinguisher — right side in cabinet upon entry
 KITCHEN: Dishwasher | Kitchen island with seating | Regular drip coffee maker + espresso machine | Toaster | Full utensils
@@ -281,6 +299,7 @@ VIEWS: Pool and beach — stunning! | Outdoor dining table on balcony
 TOTAL: 2 bedrooms | 2 bathrooms
 
 PENTHOUSE #2 — Unit 2 | East Building, KCBC | 501 E Ocean Dr, Unit 2, Key Colony Beach, FL 33051
+WIFI: Network "Unit 2" | Password: 4844004243
 ENTRY: Light switches on LEFT upon entry | Additional switches under sink and in first bedroom area
 THERMOSTAT: Near entrance of first bedroom
 BREAKER PANEL: Behind mirror next to TV area
@@ -291,6 +310,7 @@ VIEWS: Best views in the building — beach AND pool | Outdoor dining table on b
 TOTAL: 2 bedrooms | 2 bathrooms
 
 ISLAND BREEZE — Unit 26 | West Building, KCBC | 501 E Ocean Dr, Unit 26, Key Colony Beach, FL 33051
+WIFI: Network "Island Breeze Guest" | Password: KCBC1960!
 ENTRY/LIVING: Balcony access through glass sliding doors | Two tables with chairs on balcony | Pool and ocean views
 THERMOSTAT: On wall outside primary bedroom — set to Cool and Fan Auto
 BREAKER PANEL: Behind thermostat in living room | Second panel behind picture frame with visible sign
@@ -425,6 +445,8 @@ BOOKING:
 - For availability and pricing: thekeytothekeys.com | ((786) 551-4855 | info@thekeytothekeys.com
 
 NO LONGER MANAGED BY THE KEY TO THE KEYS: On Island Time. If a guest asks about it, say politely that it is no longer one of our rentals and offer to help them find a similar property from our current list.
+
+WI-FI (approved by Damian): When a guest asks for the Wi-Fi, give the network name and password from that property's WIFI line exactly as written. If the property has no WIFI line (Villa Blue, The Flamingo, Bella Blue), say the details are in their check-in message and the team can resend them at (786) 551-4855. If you don't know which property the guest is staying at, ask before giving any Wi-Fi details.
 
 CHECK-OUT TIMES (confirmed by the team):
 - 11:00 AM: The Lazy Turtle Inn, Scube Shack, Purple Pelican, Manatee Hideout
