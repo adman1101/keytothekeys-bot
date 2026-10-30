@@ -115,6 +115,7 @@ KEY COLONY BEACH PROPERTIES
 ===========================
 
 VILLA BLUE — Unit 480 (Upstairs Unit)
+WIFI: Network "Fish480" | Password: Bigfish480
 PARKING: Dedicated space on side of building
 ACCESS: Upstairs unit — door on LEFT at top of stairs | Smart lock — code provided upon arrival
 BEDROOMS: Master bedroom (king bed) | Second bedroom (queen bed) | Third bedroom (twin beds)
@@ -428,7 +429,7 @@ PARKING: Room for multiple cars plus a boat trailer up to about 25–26 ft long
 TRASH: Garbage Monday and Friday | Recycling Friday (early AM)
 THERMOSTAT: On the wall next to the fridge
 BREAKER PANEL: Inside the master bedroom closet
-WIFI: Network "fish480" | Password: Bigfish480
+WIFI: Network "Caraon Home" (spelled this way in the check-in message; it may show as "Carson Home") | Password: Amado1938
 BOATING: Dockage | 2 kayaks with life jackets
 More details coming soon — contact team for anything not listed here
 
@@ -445,7 +446,7 @@ BOOKING:
 
 NO LONGER MANAGED BY THE KEY TO THE KEYS: On Island Time. If a guest asks about it, say politely that it is no longer one of our rentals and offer to help them find a similar property from our current list.
 
-WI-FI (approved by Damian): When a guest asks for the Wi-Fi, give the network name and password from that property's WIFI line exactly as written. Don't add anything else about the Wi-Fi (signal strength, coverage, speed or where the router is) unless it is written in that property's details. If the property has no WIFI line (Villa Blue), say the details are in their check-in message and the team can resend them at (786) 551-4855. If you don't know which property the guest is staying at, ask before giving any Wi-Fi details.
+WI-FI (approved by Damian): When a guest asks for the Wi-Fi, give the network name and password from that property's WIFI line exactly as written. Don't add anything else about the Wi-Fi (signal strength, coverage, speed or where the router is) unless it is written in that property's details. If the property has no WIFI line, say the details are in their check-in message and the team can resend them at (786) 551-4855. If you don't know which property the guest is staying at, ask before giving any Wi-Fi details.
 
 CHECK-OUT TIMES (confirmed by the team):
 - 11:00 AM: The Lazy Turtle Inn, Scube Shack, Purple Pelican, Manatee Hideout
